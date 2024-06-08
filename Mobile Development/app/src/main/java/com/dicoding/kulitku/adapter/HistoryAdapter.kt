@@ -16,7 +16,7 @@ class HistoryAdapter(private var historyList: ArrayList<Analyze>) :
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val analyzeHistoryImg: ImageView = item.findViewById(R.id.analyze_history_image)
         val analyzeHistoryType: TextView = item.findViewById(R.id.analyze_history_type)
-        val analyzeHistoryScore: TextView = item.findViewById(R.id.analyze_history_score)
+//        val analyzeHistoryScore: TextView = item.findViewById(R.id.analyze_history_score)
     }
 
     override fun onCreateViewHolder(
@@ -31,12 +31,11 @@ class HistoryAdapter(private var historyList: ArrayList<Analyze>) :
     override fun onBindViewHolder(holder: HistoryAdapter.ViewHolder, position: Int) {
         val analyzeHistory = historyList[position]
         holder.analyzeHistoryImg.setImageURI(Uri.parse(analyzeHistory.uri))
-        holder.analyzeHistoryType.text =
-            holder.itemView.context.getString(R.string.analyze_type, analyzeHistory.type)
-        holder.analyzeHistoryScore.text = holder.itemView.context.getString(
-            R.string.analyze_score,
-            NumberFormat.getPercentInstance().format(analyzeHistory.confidence).toString()
-        )
+        holder.analyzeHistoryType.text = analyzeHistory.type
+//        holder.analyzeHistoryScore.text = holder.itemView.context.getString(
+//            R.string.analyze_score,
+//            NumberFormat.getPercentInstance().format(analyzeHistory.confidence).toString()
+//        )
     }
 
     override fun getItemCount(): Int {

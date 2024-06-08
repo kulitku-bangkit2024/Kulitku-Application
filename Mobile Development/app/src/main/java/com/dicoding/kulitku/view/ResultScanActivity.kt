@@ -1,35 +1,36 @@
 package com.dicoding.kulitku.view
 
+import SkinDetectionHelper
+import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.kulitku.R
 import com.dicoding.kulitku.data.Analyze
 import com.dicoding.kulitku.databinding.ActivityResultScanBinding
-import com.dicoding.kulitku.helper.ImageClassifierHelper
-import org.tensorflow.lite.task.vision.classifier.Classifications
-import java.text.NumberFormat
 
 class ResultScanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultScanBinding
-    private lateinit var imageClassifierHelper: ImageClassifierHelper
+
+    private lateinit var skinDetectionHelper: SkinDetectionHelper
     private lateinit var analyzeViewModel: AnalyzeViewModel
     private var analyzeResult: Analyze? = null
 
     companion object {
         const val EXTRA_IMAGE_URI = "extra_image_uri"
+        private const val REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1
+        private const val TAG = "ResultScanActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultScanBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // TODO: Menampilkan hasil gambar, prediksi, dan confidence score.
 
         analyzeViewModel = obtainViewModel(this@ResultScanActivity)
 
@@ -39,6 +40,21 @@ class ResultScanActivity : AppCompatActivity() {
             binding.resultImage.setImageURI(it)
             analyzeImage(it)
         }
+
+        // Request write permission at runtime
+        if (ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                REQUEST_CODE_WRITE_EXTERNAL_STORAGE
+            )
+        }
+
+        // Save result to history
         binding.saveButton.setOnClickListener {
             if (analyzeResult == null) {
                 showToast("Analyze insert Error")
@@ -56,50 +72,33 @@ class ResultScanActivity : AppCompatActivity() {
 
     private fun analyzeImage(uri: Uri) {
         binding.progressBar.visibility = View.GONE
-        imageClassifierHelper = ImageClassifierHelper(
+        skinDetectionHelper = SkinDetectionHelper(
             context = this,
-            classifierListener = object : ImageClassifierHelper.ClassifierListener {
+            classifierListener = object : SkinDetectionHelper.ClassifierListener {
                 override fun onError(error: String) {
                     runOnUiThread {
                         showToast("Error analyzing image")
                     }
                 }
 
-                override fun onResults(results: List<Classifications>?, inferenceTime: Long) {
+                override fun onResult(result: String) {
                     runOnUiThread {
-                        results?.let {
-                            if (it.isNotEmpty() && it[0].categories.isNotEmpty()) {
-                                println(it)
-                                val processResult = it[0].categories[0]
-                                val resultLabel = processResult.label
-                                val resultScore = processResult.score
-                                binding.resultText.text = getString(R.string.hasil_analisis)
-                                binding.resultType.text =
-                                    getString(R.string.analyze_type, resultLabel)
-                                binding.resultScore.text = getString(
-                                    R.string.analyze_score,
-                                    NumberFormat.getPercentInstance().format(resultScore).toString()
-                                )
-                                binding.resultInferenceTime.text =
-                                    getString(R.string.analyze_time, inferenceTime.toString())
+                        binding.progressBar.visibility = View.GONE
 
-                                analyzeResult = Analyze(
-                                    uri = uri.toString(),
-                                    type = resultLabel,
-                                    confidence = resultScore
-                                )
+                        binding.resultType.text = result
 
-                            } else {
-                                binding.resultText.text = getString(R.string.analyze_error)
-                            }
-                        }
+                        Log.i(TAG, "Hasil Deteksi $result")
+
+                        analyzeResult = Analyze(
+                            uri = uri.toString(),
+                            type = result
+                        )
                     }
                 }
-
             }
         )
 
-        imageClassifierHelper.classifyStaticImage(uri)
+        skinDetectionHelper.classifyStaticImage(uri)
     }
 
     private fun showToast(message: String) {
