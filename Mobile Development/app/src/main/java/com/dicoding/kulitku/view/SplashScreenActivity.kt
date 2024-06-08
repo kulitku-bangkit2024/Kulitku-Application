@@ -23,4 +23,7 @@ class SplashScreenActivity : AppCompatActivity() {
     companion object {
         private const val SPLASH_SCREEN_DELAY: Long = 2000
     }
+
+//    TEST
+
 }
