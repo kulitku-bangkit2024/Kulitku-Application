@@ -1,6 +1,6 @@
 # Kulitku
 <div align="center">
- <img src="Machine%20Learning//kulitku_logo.png">
+ <img src="kulitku-bangkit2024//Machine%20Learning//kulitku_logo.png">
 </div>
 
 
