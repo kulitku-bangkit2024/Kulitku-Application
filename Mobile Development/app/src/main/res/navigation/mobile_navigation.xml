@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.dicoding.kulitku.fragment.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+    <!-- Tambahkan fragment lainnya di sini -->
+
+<!--    sementara pake news-->
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.dicoding.kulitku.fragment.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news">
+<!--        <action-->
+<!--            android:id="@id/navigation_detail_article"-->
+<!--            app:destination="@id/navigation_detail_article"/>-->
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_scan"
+        android:name="com.dicoding.kulitku.fragment.ScanFragment"
+        android:label="@string/title_scan"
+        tools:layout="@layout/fragment_scan" />
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.dicoding.kulitku.fragment.HistoryFragment"
+        android:label="@string/title_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.dicoding.kulitku.fragment.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_skin_information"
+        android:name="com.dicoding.kulitku.fragment.SkinInformationFragment"
+        tools:layout="@layout/fragment_skin_information">
+        <action
+            android:id="@id/navigation_detail_skin_information"
+            app:destination="@id/navigation_detail_skin_information"/>
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/navigation_detail_article"
+        android:name="com.dicoding.kulitku.fragment.DetailArticleFragment"
+        tools:layout="@layout/fragment_detail_article"/>
+
+    <fragment
+        android:id="@+id/navigation_detail_skin_information"
+        android:name="com.dicoding.kulitku.fragment.DetailSkinInformationFragment"
+        tools:layout="@layout/fragment_detail_information"/>
+</navigation>

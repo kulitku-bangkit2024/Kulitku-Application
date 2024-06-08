@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="8dp"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@android:color/white"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/articleTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Jerawat"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/articleDescription"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/articleDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/lorem_ipsum"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/articleTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="vertical"-->
+<!--    app:cardCornerRadius="10dp"-->
+<!--    app:cardElevation="4dp"-->
+<!--    app:cardMaxElevation="4dp"-->
+<!--    app:cardUseCompatPadding="true"-->
+<!--    tools:ignore="MissingDefaultResource">-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/articleTitle"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Jerawat" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/articleDescription"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="@string/lorem_ipsum"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/articleTitle"-->
+<!--            tools:ignore="MissingConstraints" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--</androidx.cardview.widget.CardView>-->
+
+
+<!--    &lt;!&ndash;<?xml version="1.0" encoding="utf-8"?>&ndash;&gt;-->
+<!--    &lt;!&ndash;<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;-->
+<!--    &lt;!&ndash;    xmlns:app="http://schemas.android.com/apk/res-auto"&ndash;&gt;-->
+<!--    &lt;!&ndash;    android:layout_width="match_parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;    android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;    android:layout_marginEnd="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;    android:layout_marginTop="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;    android:layout_marginBottom="16dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;    android:layout_gravity="center">&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <androidx.cardview.widget.CardView&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_alignParentTop="true"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:cardCornerRadius="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:cardPreventCornerOverlap="false">&ndash;&gt;-->
+
+<!--    &lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--    &lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;            android:orientation="vertical">&ndash;&gt;-->
+
+<!--    &lt;!&ndash;            <ImageView&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:id="@+id/articleImage"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_height="140dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:scaleType="centerCrop"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:src="@drawable/article_image" />&ndash;&gt;-->
+
+<!--    &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:id="@+id/articleTitle"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_marginTop="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_marginEnd="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:text="10 Langkah Perawatan Kecantikan yang Efektif"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:textColor="@android:color/black"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:textSize="16sp" />&ndash;&gt;-->
+<!--    &lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </androidx.cardview.widget.CardView>&ndash;&gt;-->
+<!--    &lt;!&ndash;</RelativeLayout>&ndash;&gt;-->

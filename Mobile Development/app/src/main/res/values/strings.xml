@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Kulitku</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">Home</string>
+    <string name="title_article">Article</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_history">History</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_news">News</string>
+
+    <string name="kulitku_logo">Kulitku Logo</string>
+
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="please_login">Please login to your account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="or">OR</string>
+    <string name="sign_in_with_google">Sign In with Google</string>
+    <string name="google_icon">Google Icon</string>
+    <string name="show_password_icon">Show Password Icon</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+
+    <string name="create_new_account">Create a new account</string>
+    <string name="name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="show_password">Show Password</string>
+    <string name="have_account">Already have an account?</string>
+
+    <!-- Error Messages -->
+    <string name="name_empty_error">Name cannot be empty</string>
+    <string name="email_empty_error">Email cannot be empty</string>
+    <string name="email_invalid_error">Please enter a valid email address</string>
+    <string name="password_empty_error">Password cannot be empty</string>
+    <string name="password_invalid_error">Password must be at least 8 characters</string>
+    <string name="confirm_password_empty_error">Confirm Password cannot be empty</string>
+    <string name="password_mismatch_error">Password and Confirm Password do not match</string>
+
+    <string name="password_not_match">Password not match</string>
+    <string name="incorrect_email_format">Incorrect email format</string>
+    <string name="email_taken">Email is already registered</string>
+    <string name="password_less">Password must be at least 8 characters</string>
+    <string name="empty_name">Name cannot be empty</string>
+    <string name="article_image">Image Article</string>
+    <string name="article_description">Article Description</string>
+    <string name="article_title">Article Title</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="history">History</string>
+    <string name="timestamp">07 Mei 2024 | 13:00</string>
+    <string name="tips_trik">Tips &amp; Trik</string>
+    <string name="description_article">Menjaga kesehatan kulit menjadi kunci agar penampilanmu senantiasa terlihat terawat dan menawan. Untuk memastikan kulit sehat, sejumlah cara menjaga kesehatan kulit pun sebaiknya kamu lakukan secara konsisten.\n\nKulit sehat bisa dijaga dari luar dan dari dalam. Tidak hanya dengan memakai produk perawatan yang ideal, secara alami kulit bisa menjadi lebih sehat jika kamu menjalankan sejumlah kebiasaan yang baik untuk kulit.\n\nBerikut ini adalah beberapa cara menjaga kesehatan kulit yang dapat kamu lakukan setiap hari. Selain kulit lebih sehat dan terawat, kebiasaan-kebiasaan baik di bawah ini juga berpengaruh positif untuk kesehatan tubuhmu secara keseluruhan.\n\n1.  Mengubah Pola Makan Menjadi Lebih Sehat\nApa yang kamu makan bisa berpengaruh langsung untuk kesehatan kulitmu. Mengonsumsi makanan kaya vitamin dapat membuat kulit lebih terawat dan awet muda. Sementara itu, terbiasa mengonsumsi makanan yang terlalu banyak lemak dan terlalu tinggi karbohidrat juga dapat berpengaruh buruk pada kulit sebab bisa memicu peradangan dan jerawat.\n\n2.  Istirahat yang Cukup\nCara menjaga kesehatan kulit sesimpel kamu mendapatkan istirahat yang cukup tiap hari. Pastikan kamu tidur 7—8 jam per hari untuk tampilan kulit yang muda, cerah, dan terawat. Sebaliknya ketika kamu kurang tidur, kulit akan mudah terlihat kusam dan tua. Belum lagi ada risiko munculnya kantung mata yang menghitam akibat tidak memadainya waktu istirahatmu.\n\n3.  Hindari Rokok dan Alkohol\nPunya kebiasaan merokok dan mengonsumsi alkohol? Mulai sekarang, hentikan kebiasaan tersebut jika ingin memperoleh kulit sehat. Merokok dan mengonsumsi alkohol akan membuat kolagen berkurang. Padahal, kolagen sangat penting untuk kesehatan kulit karena menjaga kekencangannya. Berkurangnya produksi kolagen pada tubuh akan membuat regenerasi kulit menjadi tidak optimal dan merangsang munculnya kerutan halus ataupun tanda penuaan lainnya.\n\n4.  Kelola Stres dengan Baik\nStres tidak baik untuk kesehatan kulit. Stres yang tidak terkelola dengan baik rentan menstimulasi kelenjar adrenal untuk memproduksi hormon kortisol. Ini merupakan hormon yang berperan besar dalam produksi lemak dari kelenjar sebasea. Jumlah lemak berminyak yang terlalu banyak ini bisa menutup pori-pori kulit dan menjebak bakteri di kulitmu.\n\n5.  Lindungi dari Sinar Matahari\nPaparan sinar matahari langsung bisa menyebarkan sinar ultraviolet dan radikal bebas yang berpengaruh buruk untuk kesehatan kulit. Kulitmu bisa mudah mengalami iritasi dan kekeringan jika terlalu sering terpapar sinar matahari. Kamu bisa melindungi kulit dari matahari dengan menggunakan tabir surya serta membatasi kegiatan di luar ruangan ketika pukul 10.00—16.00 di mana sinar matahari memancar kuat pada waktu-waktu tersebut. \n\n6.  Olahraga secara Rutin\nSudah banyak penelitian yang mengungkapkan bahwa olahraga rutin merupakan cara menjaga kesehatan kulit yang efektif. Ketika kamu rutin berolahraga, penuaan sel dapat diperlambat, peredaran darah lebih lancar, dan produksi hormon di tubuh lebih optimal. Kulit pun tentu lebih sehat dan menawan!\n\n7.  Mandi 2 Kali Sehari\nJangan lupa untuk selalu menjaga kebersihan tubuh sebagai salah satu cara menjaga kesehatan kulit. Biasakan mandi dua kali sehari menggunakan sabun antibakteri untuk membersihkan kotoran dan bakteri yang menempel di tubuh. Jangan sampai kotoran-kotoran tersebut membuat kulit kusam dan menimbulkan iritasi serta infeksi yang tidak diinginkan. Berbagai masalah kulit juga dapat mengancam kulit tubuhmu jika kuman dan bakteri masih menempel di kulitmu.</string>
+    <string name="your_web_client_id">933960394029-bsekea8g1keo8pu5fb1avg51bkrrgrih.apps.googleusercontent.com</string>
+
+    <string name="btn_camera">Camera</string>
+    <string name="btn_gallery">Gallery</string>
+    <string name="btn_analyze">Analyze</string>
+    <string name="result">Hasil Analisis</string>
+    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="no_text_recognized">No text recognized!</string>
+    <string name="classfier_setup_error">"Image Classifier Initialization Error, check error log for details"</string>
+    <string name="analyze_error">Oops, there seems to be trouble in analyzing the image, \n Please try again later</string>
+    <string name="score">Score Analyze</string>
+    <string name="save_button">Save Analyze</string>
+    <string name="btn_selesai">Selesai</string>
+    <string name="link">Read</string>
+    <string name="titleNews">Judul Berita</string>
+    <string name="informasi">Informasi</string>
+    <string name="analyze_image">analyze image</string>
+    <string name="analyze_type">Type: %s</string>
+    <string name="analyze_score">Score: %s</string>
+    <string name="analyze_time">%s ms</string>
+    <string name="no_history_found">History Kosong</string>
+    <string name="hasil_analisis">Hasil analisis:</string>
+</resources>

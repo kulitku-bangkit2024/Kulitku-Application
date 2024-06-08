@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparan">#00000000</color>
+    <color name="terracotta">#AE4E38</color>
+    <color name="coral">#DB8065</color>
+    <color name="pink">#F19888</color>
+    <color name="send">#F0D9C7</color>
+    <color name="gold">#D79330</color>
+    <color name="blue">#0D174188</color>
+
+    <color name="gray1">#B7B7B7</color>
+    <color name="gray2">#D9D9D9</color>
+
+    <color name="rippleColor">#03FF72</color>
+    <color name="indicatorColor">#03FF72</color>
+    <color name="backgroundColor">#FF5722</color>
+    <color name="mainColor">#FF5722</color>
+    <color name="nvy">#0E174E</color>
+</resources>
