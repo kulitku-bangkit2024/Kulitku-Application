@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.dicoding.kulitku.databinding.ActivityOnBoardingBinding
+import com.dicoding.kulitku.view.login.LoginActivity
+import com.dicoding.kulitku.view.register.RegisterActivity
 
 class OnBoardingActivity : AppCompatActivity() {
 

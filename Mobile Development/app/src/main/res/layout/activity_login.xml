@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".view.LoginActivity">
+    tools:context=".view.login.LoginActivity">
 
     <TextView
         android:id="@+id/tv_login"
@@ -82,15 +82,15 @@
             android:src="@drawable/password_show" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_forgot_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/forgot_password"
-        android:textColor="@color/terracotta"
-        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_forgot_password"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="@string/forgot_password"-->
+<!--        android:textColor="@color/terracotta"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />-->
 
     <Button
         android:id="@+id/btn_login"
@@ -100,9 +100,9 @@
         android:background="@drawable/round_back_primary"
         android:text="@string/login"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/tv_forgot_password"
-        app:layout_constraintStart_toStartOf="@+id/tv_forgot_password"
-        app:layout_constraintTop_toBottomOf="@+id/tv_forgot_password" />
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
