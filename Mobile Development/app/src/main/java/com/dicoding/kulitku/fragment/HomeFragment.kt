@@ -17,10 +17,13 @@ import com.dicoding.kulitku.adapter.SkinInformationAdapter
 import com.dicoding.kulitku.data.informasiItem
 import com.dicoding.kulitku.databinding.FragmentHomeBinding
 import com.dicoding.kulitku.view.HomeViewModel
+import com.dicoding.kulitku.view.UserModelFactory
+import com.dicoding.kulitku.view.UserPreferences
 import com.dicoding.kulitku.view.home.banner.BannerFragment
 import com.dicoding.kulitku.view.home.banner.BannerSlider
 import com.dicoding.kulitku.view.home.banner.SliderIndicator
 import com.dicoding.kulitku.view.home.banner.SliderPagerAdapter
+import com.dicoding.kulitku.view.login.dataStore
 import com.dicoding.kulitku.view.quiz.QuizMainActivity
 
 class HomeFragment : Fragment(), View.OnClickListener, OnSkinInformationClickListener {
@@ -37,16 +40,15 @@ class HomeFragment : Fragment(), View.OnClickListener, OnSkinInformationClickLis
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-//        return root
-//        return true
+
+        val userPreferences = UserPreferences.getInstance(requireContext().dataStore)
+        val homeViewModel = ViewModelProvider(this, UserModelFactory(userPreferences)).get(HomeViewModel::class.java)
+
+        homeViewModel.userName.observe(viewLifecycleOwner, Observer { userName ->
+            binding.textViewUser.text = "Hello $userName"
+        })
 
         // BANNER
         val bannerSlider = binding.ilBanner.sliderView
@@ -61,9 +63,9 @@ class HomeFragment : Fragment(), View.OnClickListener, OnSkinInformationClickLis
         rvInformasiItem.adapter = SkinInformationAdapter(informasiItem, this)
 
         // Mengamati LiveData dari ViewModel
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textViewUser.text = it
-        })
+//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+//            binding.textViewUser.text = it
+//        })
 
         // Set click listeners for menu items
         binding.menuTips.setOnClickListener(this)

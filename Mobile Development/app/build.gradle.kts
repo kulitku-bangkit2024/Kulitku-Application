@@ -20,6 +20,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "NEWS_API_KEY", "\"8461b20805e6427c9097f7accdc8390b\"")
         buildConfigField("String", "NEWS_API_URL", "\"https://newsapi.org/v2/\"")
+
+        buildConfigField("String", "AUTH_API_URL", "\"https://kulitku-bangkit2024.et.r.appspot.com/\"")
     }
 
     buildTypes {
@@ -92,5 +94,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
 }
