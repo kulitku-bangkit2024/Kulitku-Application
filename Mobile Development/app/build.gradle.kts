@@ -45,6 +45,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    aaptOptions {
+        noCompress ("tflite")
+    }
 }
 
 dependencies {
@@ -53,7 +57,9 @@ dependencies {
     implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.0")
     implementation("androidx.camera:camera-mlkit-vision:1.4.0-beta01")
     implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
-    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
+
+    implementation("com.google.android.gms:play-services-tflite-java:16.1.0")
+    implementation("com.google.android.gms:play-services-tflite-gpu:16.2.0")
     val cameraxVersion = "1.3.3"
 //  glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
@@ -90,6 +96,7 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
     implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
     implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite:2.16.1")
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")

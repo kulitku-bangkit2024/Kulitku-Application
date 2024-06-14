@@ -6,6 +6,8 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
+import com.dicoding.kulitku.ml.Model2
+import com.dicoding.kulitku.ml.ModelNew
 import com.dicoding.kulitku.ml.SkinDetectionKulitku
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -28,7 +30,7 @@ class SkinDetectionHelper(
             inputFeature0.loadBuffer(floatBuffer)
 
             try {
-                val model = SkinDetectionKulitku.newInstance(context)
+                val model = Model2.newInstance(context)
                 val outputs = model.process(inputFeature0)
                 val outputFeature0 = outputs.outputFeature0AsTensorBuffer
                 val diseaseName = parseResult(outputFeature0)
@@ -59,9 +61,14 @@ class SkinDetectionHelper(
     }
 
     private fun parseResult(output: TensorBuffer): String {
-        val result = output.floatArray[0]
-//        val diseaseName = if (result > 0.5) "Kulit Bermasalah" else "Kulit Normal"
-        return "Hasil Deteksi : $result"
+//        val result = output.floatArray[0]
+////        val diseaseName = if (result > 0.5) "Kulit Bermasalah" else "Kulit Normal"
+//        return "Hasil Deteksi : $result"
+        val resultArray = output.floatArray
+        // Assume you want to get the max value and its index
+        val maxIndex = resultArray.indices.maxByOrNull { resultArray[it] } ?: -1
+        val maxValue = resultArray[maxIndex]
+        return "Hasil Deteksi : Index $maxIndex \n dengan nilai $maxValue"
     }
 
 

@@ -8,5 +8,5 @@ import com.dicoding.kulitku.data.AnalyzeRepository
 
 class HistoryViewModel(application: Application) : ViewModel() {
     private val mAnalyzeRepository: AnalyzeRepository = AnalyzeRepository(application)
-    fun getAll(): LiveData<List<Analyze>> = mAnalyzeRepository.getAllNotes()
+    val allNotes: LiveData<List<Analyze>> = mAnalyzeRepository.getAllNotes()
 }

@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
-        android:text="@string/btn_analyze"
+        android:text="Selanjutnya"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_gallery"
         app:layout_constraintStart_toStartOf="@+id/btn_gallery"

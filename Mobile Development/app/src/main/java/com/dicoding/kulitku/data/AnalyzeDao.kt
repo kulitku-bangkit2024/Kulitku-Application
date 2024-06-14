@@ -11,7 +11,7 @@ interface AnalyzeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(analyze: Analyze)
 
-    @Query("SELECT * FROM `analyze` ORDER BY imageUri ASC")
+    @Query("SELECT * FROM `analyze` ORDER BY id ASC")
     fun getAll() : LiveData<List<Analyze>>
 
 

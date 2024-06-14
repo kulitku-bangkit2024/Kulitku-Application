@@ -9,7 +9,10 @@ import kotlinx.parcelize.Parcelize
 @Entity
 @Parcelize
 data class Analyze(
-    @PrimaryKey
+
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0L,
+
     @ColumnInfo(name = "imageUri")
     var uri: String,
 

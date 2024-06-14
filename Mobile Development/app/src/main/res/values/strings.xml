@@ -73,4 +73,12 @@
     <string name="analyze_time">%s ms</string>
     <string name="no_history_found">History Kosong</string>
     <string name="hasil_analisis">Hasil analisis:</string>
+    <string name="tflite_is_not_initialized_yet">tflite is not initialized yet</string>
+    <string name="error_loading_image">Error Loading Image</string>
+
+    <string-array name="tipe_kulit_array">
+        <item>Normal</item>
+        <item>Dry</item>
+        <item>Oil</item>
+    </string-array>
 </resources>

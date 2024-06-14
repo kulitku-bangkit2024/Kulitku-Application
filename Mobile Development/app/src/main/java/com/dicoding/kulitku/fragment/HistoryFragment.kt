@@ -12,6 +12,7 @@ import com.dicoding.kulitku.adapter.HistoryAdapter
 import com.dicoding.kulitku.data.Analyze
 import com.dicoding.kulitku.databinding.FragmentHistoryBinding
 import com.dicoding.kulitku.data.sampleHistoryItems
+import com.dicoding.kulitku.view.AnalyzeViewModel
 import com.dicoding.kulitku.view.HistoryViewModel
 import com.dicoding.kulitku.view.ViewModelFactory
 
@@ -19,7 +20,9 @@ class HistoryFragment : Fragment() {
 
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
+    private lateinit var analyzeViewModel: AnalyzeViewModel
     private lateinit var historyViewModel: HistoryViewModel
+    private lateinit var historyAdapter: HistoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,9 +36,13 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         historyViewModel = obtainViewModel()
+        historyAdapter = HistoryAdapter(arrayListOf())
+        binding.historyRv.adapter = historyAdapter
+        binding.historyRv.layoutManager = LinearLayoutManager(requireContext())
+        binding.historyRv.setHasFixedSize(true)
 
-        historyViewModel.getAll().observe(viewLifecycleOwner) {
-            showRecyclerView(it as ArrayList<Analyze>)
+        historyViewModel.allNotes.observe(viewLifecycleOwner) { analyzeList ->
+            historyAdapter.updateData(analyzeList)
         }
     }
 
@@ -44,14 +51,27 @@ class HistoryFragment : Fragment() {
         return ViewModelProvider(this, factory).get(HistoryViewModel::class.java)
     }
 
-    private fun showRecyclerView(analyzeHistoryList: ArrayList<Analyze>) {
-        val layoutManager = LinearLayoutManager(requireContext())
-        binding.historyRv.layoutManager = layoutManager
-        binding.historyRv.setHasFixedSize(true)
-
-        val adapter = HistoryAdapter(analyzeHistoryList)
-        binding.historyRv.adapter = adapter
-    }
+//    private fun setupRecyclerView() {
+//        historyAdapter = HistoryAdapter(ArrayList())
+//        binding.historyRv.apply {
+//            layoutManager = LinearLayoutManager(requireContext())
+//            adapter = historyAdapter
+//        }
+//    }
+//    private fun showRecyclerView(analyzeHistoryList: ArrayList<Analyze>) {
+//        val layoutManager = LinearLayoutManager(requireContext())
+//        binding.historyRv.layoutManager = layoutManager
+//        binding.historyRv.setHasFixedSize(true)
+//
+//        val adapter = HistoryAdapter(analyzeHistoryList)
+//        binding.historyRv.adapter = adapter
+//    }
+//
+//    private fun observeViewModel() {
+//        historyViewModel.allNotes.observe(viewLifecycleOwner) { analyzes ->
+//            historyAdapter.updateData(analyzes)
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

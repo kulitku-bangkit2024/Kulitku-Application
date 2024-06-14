@@ -63,3 +63,8 @@ data class DeleteProfileResponse(
     @SerializedName("success") val success: Boolean,
     @SerializedName("message") val message: String
 )
+
+data class DiseaseData(
+    val nama_penyakit: String,
+    val obat_rekomendasi: String
+)
