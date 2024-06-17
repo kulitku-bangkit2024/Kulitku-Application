@@ -66,15 +66,6 @@ class NewsFragment : Fragment() {
         }
     }
 
-    fun openNewsUrl(view: View) {
-        val url = view.getTag(R.id.tvLink) as? String
-        url?.let {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
-            startActivity(intent)
-        }
-    }
-
     private fun showLoadingState(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }

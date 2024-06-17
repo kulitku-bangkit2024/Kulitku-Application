@@ -9,18 +9,11 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.kulitku.MainActivity
 import com.dicoding.kulitku.R
-import com.dicoding.kulitku.api.LoginData
 import com.dicoding.kulitku.api.RegisterData
 import com.dicoding.kulitku.databinding.ActivityRegisterBinding
 import com.dicoding.kulitku.view.login.LoginActivity
 import com.dicoding.kulitku.view.MainViewModelFactory
-import com.dicoding.kulitku.view.UserModelFactory
-import com.dicoding.kulitku.view.UserPreferences
-import com.dicoding.kulitku.view.UserViewModel
-import com.dicoding.kulitku.view.login.LoginViewModel
-import com.dicoding.kulitku.view.login.dataStore
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding

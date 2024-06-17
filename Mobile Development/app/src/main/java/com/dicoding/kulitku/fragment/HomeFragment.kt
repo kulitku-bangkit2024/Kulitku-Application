@@ -44,7 +44,10 @@ class HomeFragment : Fragment(), View.OnClickListener, OnSkinInformationClickLis
         val root: View = binding.root
 
         val userPreferences = UserPreferences.getInstance(requireContext().dataStore)
-        val homeViewModel = ViewModelProvider(this, UserModelFactory(userPreferences)).get(HomeViewModel::class.java)
+        val homeViewModel = ViewModelProvider(
+            this,
+            UserModelFactory(userPreferences)
+        ).get(HomeViewModel::class.java)
 
         homeViewModel.userName.observe(viewLifecycleOwner, Observer { userName ->
             binding.textViewUser.text = "Hello $userName"
@@ -62,15 +65,10 @@ class HomeFragment : Fragment(), View.OnClickListener, OnSkinInformationClickLis
         rvInformasiItem.layoutManager = layoutManagerInformasiItem
         rvInformasiItem.adapter = SkinInformationAdapter(informasiItem, this)
 
-        // Mengamati LiveData dari ViewModel
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            binding.textViewUser.text = it
-//        })
-
         // Set click listeners for menu items
         binding.menuTips.setOnClickListener(this)
         binding.menuInformasi.setOnClickListener(this)
-//        binding.menuQuiz.setOnClickListener(this)
+        binding.menuQuiz.setOnClickListener(this)
 
         binding.readMoreButton.setOnClickListener(this)
 
@@ -83,15 +81,10 @@ class HomeFragment : Fragment(), View.OnClickListener, OnSkinInformationClickLis
         val backToFragmentHome = arguments?.getBoolean("backToFragmentHome", false)
 
         if (backToFragmentHome == true) {
-            // Lakukan tindakan untuk kembali ke FragmentHome
-            // Contoh: ganti fragment, tampilkan halaman, atau lakukan apa yang perlu dilakukan
-            // Misalnya:
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, this)
                 .commit()
         }
-
-
         return root
     }
 
@@ -116,8 +109,8 @@ class HomeFragment : Fragment(), View.OnClickListener, OnSkinInformationClickLis
 
     override fun onClick(v: View?) {
         when (v?.id) {
-//            R.id.menu_tips -> navigateToFragment(R.id.navigation_article)
-//sementara pake news
+            // R.id.menu_tips -> navigateToFragment(R.id.navigation_article)
+            // sementara pake news
             R.id.menu_tips -> navigateToFragment(R.id.navigation_news)
             R.id.menu_informasi -> navigateToFragment(R.id.navigation_skin_information)
             R.id.readMoreButton -> navigateToFragment(R.id.navigation_news)

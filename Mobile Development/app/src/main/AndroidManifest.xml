@@ -8,9 +8,12 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -18,27 +21,17 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kulitku"
         tools:targetApi="31">
         <activity
-            android:name=".view.SkinDataActivity"
+            android:name=".view.RecommendationActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ResetPasswordActivity"
+            android:name=".view.DetailHistoryActivity"
             android:exported="false" />
 
-        <meta-data
-            android:name="com.google.android.gms.auth.api.credentials.CREDENTIAL_ENABLE_SAVING"
-            android:value="true" />
-
-        <activity
-            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".view.CameraActivity"
             android:exported="false" />
@@ -75,6 +68,16 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.dicoding.kulitku"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

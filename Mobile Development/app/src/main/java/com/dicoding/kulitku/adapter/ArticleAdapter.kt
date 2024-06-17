@@ -33,27 +33,19 @@ class ArticleAdapter(private val articleItems: List<ArticleItem>, private val li
     inner class ArticleViewHolder(private val binding: ItemArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-//        init {
-//            itemView.setOnClickListener(this)
-//        }
-
         fun bind(articleItem: ArticleItem) {
             binding.articleTitle.text = articleItem.title
             binding.articleDescription.text = getShortenedDescription(articleItem.description)
         }
 
         private fun getShortenedDescription(description: String): String {
-            val maxLength = 100 // Maximum length of description to show
+            val maxLength = 100
             return if (description.length > maxLength) {
                 description.substring(0, maxLength) + "..."
             } else {
                 description
             }
         }
-
-//        override fun onClick(v: View?) {
-//            listener.onArcticleClick(adapterPosition)
-//        }
     }
 }
 

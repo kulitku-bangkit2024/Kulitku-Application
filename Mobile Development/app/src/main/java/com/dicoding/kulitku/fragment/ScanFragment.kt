@@ -4,30 +4,32 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.dicoding.kulitku.helper.Classifier
 import com.dicoding.kulitku.R
 import com.dicoding.kulitku.api.DiseaseData
+import com.dicoding.kulitku.api.Product
 import com.dicoding.kulitku.databinding.FragmentScanBinding
 import com.dicoding.kulitku.view.ResultScanActivity
-import com.dicoding.kulitku.view.getImageUri
+import com.dicoding.kulitku.view.createCustomTempFile
+import com.dicoding.kulitku.view.uriToFile
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.lang.reflect.Type
@@ -35,20 +37,26 @@ import java.lang.reflect.Type
 class ScanFragment : Fragment() {
     private var _binding: FragmentScanBinding? = null
     private val binding get() = _binding!!
-    private var currentImageUri: Uri? = null
+    private var getFile: File? = null
+    private lateinit var currentPhotoPath: String
 
     private lateinit var classifier: Classifier
+    private lateinit var classifierSkintype: Classifier
     private lateinit var mBitmap: Bitmap
 
     private val mInputSize = 224
-    private val mModelPath = "model2.tflite"
+    private val mModelPath = "model_skin_disease.tflite"
     private val mLabelPath = "disease_names.txt"
-    private val mJsonPath = "label.json"
+    private val mJsonPath = "disease_names.json"
+
+    private val mModelPathSkinType = "model_skin_types.tflite"
+    private val mLabelPathSkinType = "skin_types.txt"
+    private val mJsonPathSkinType = "skin_types.json"
 
     private lateinit var diseaseDataList: List<DiseaseData>
+    private lateinit var skinTypeDataList: List<Product>
 
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
-    private lateinit var launcherGallery: ActivityResultLauncher<PickVisualMediaRequest>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,8 +70,12 @@ class ScanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         classifier = Classifier(requireContext().assets, mModelPath, mLabelPath, mInputSize)
+        classifierSkintype =
+            Classifier(requireContext().assets, mModelPathSkinType, mLabelPathSkinType, mInputSize)
         // Load disease data from JSON
         loadDiseaseData()
+        // Load skin type data from JSON
+        loadSkinTypeData()
 
         requestPermissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestPermission()
@@ -75,108 +87,159 @@ class ScanFragment : Fragment() {
             }
         }
 
-        launcherGallery = registerForActivityResult(
-            ActivityResultContracts.PickVisualMedia()
-        ) { uri: Uri? ->
-            if (uri != null) {
-                currentImageUri = uri
-                Log.d("SCAN FRAGMENT", "$currentImageUri")
-                showImage()
-            } else {
-                Log.d("Pilih Photo", "Tidak ada media")
-            }
-        }
-
-        if (!checkForPermission()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                requestPermissionLauncher.launch(READ_MEDIA_IMAGES)
-            } else {
-                requestPermissionLauncher.launch(READ_EXTERNAL_STORAGE)
-            }
-        }
+        checkCameraPermission()
 
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnCamera.setOnClickListener { startCamera() }
         binding.btnAnalyze.setOnClickListener {
-            currentImageUri?.let {
-                analyzeImage(it)
+            getFile?.let {
+                navigateToResult(it)
             } ?: run {
                 showToast(getString(R.string.empty_image_warning))
             }
         }
     }
 
-    private fun checkForPermission(): Boolean {
-        val requiredPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            READ_MEDIA_IMAGES
-        } else {
-            READ_EXTERNAL_STORAGE
+    private fun checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
-
-        val permission = ContextCompat.checkSelfPermission(
-            requireContext(),
-            requiredPermission
-        )
-        return permission == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun startGallery() {
-        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-    }
-
+    // CAMERA
     private fun startCamera() {
-        currentImageUri = getImageUri(requireContext())
-        launcherIntentCamera.launch(currentImageUri)
-    }
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        intent.resolveActivity(requireActivity().packageManager)
 
-    private val launcherIntentCamera = registerForActivityResult(
-        ActivityResultContracts.TakePicture()
-    ) { isSuccess ->
-        if (isSuccess) {
-            showImage()
+        createCustomTempFile(requireActivity().application).also {
+            val photoUri: Uri = FileProvider.getUriForFile(
+                requireContext(), getString(R.string.package_name), it
+            )
+
+            currentPhotoPath = it.absolutePath
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+            launcherIntentCamera.launch(intent)
         }
     }
 
-    private fun showImage() {
-        currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
-            binding.previewImageView.setImageURI(it)
-            try {
-                mBitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, it)
-            } catch (e: IOException) {
-                e.printStackTrace()
-                showToast(getString(R.string.error_loading_image))
+    private val launcherIntentCamera =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == AppCompatActivity.RESULT_OK) {
+                val myFile = File(currentPhotoPath)
+                getFile = myFile
+
+                val result = BitmapFactory.decodeFile(getFile?.path)
+                binding.previewImageView.setImageBitmap(result)
+
+                analyzeImage(myFile)
             }
         }
+
+    // GALLERY
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+
+        val chooser = Intent.createChooser(intent, getString(R.string.choose_picture))
+        launcherIntentGallery.launch(chooser)
     }
 
-    private fun analyzeImage(uri: Uri) {
-//        moveToResult(uri)
-        val results = classifier.recognizeImage(mBitmap).firstOrNull()
-        results?.let {
-            val diseaseName = it.title
-            val recommendedMedicine = getMedicineRecommendation(diseaseName)
-            navigateToResult(it.title, it.confidence, recommendedMedicine)
-        } ?: run {
-            Toast.makeText(requireContext(), "No results from detection", Toast.LENGTH_SHORT).show()
+    private val launcherIntentGallery =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                val imageUri: Uri = result.data?.data as Uri
+                val myFile = uriToFile(imageUri, requireContext())
+
+                Log.d(TAG, imageUri.toString())
+                Log.d(TAG, myFile.toString())
+
+                myFile.let { file ->
+                    getFile = file
+                    binding.previewImageView.setImageBitmap(BitmapFactory.decodeFile(file.path))
+                }
+
+                getFile = myFile
+                binding.previewImageView.setImageURI(imageUri)
+
+                analyzeImage(myFile)
+            }
+        }
+
+    private fun analyzeImage(file: File) {
+        try {
+            mBitmap = BitmapFactory.decodeFile(file.path)
+
+            val diseaseResults = classifier.recognizeImage(mBitmap).firstOrNull()
+            val skinTypeResults = classifierSkintype.recognizeImage(mBitmap).firstOrNull()
+
+            if (diseaseResults != null && skinTypeResults != null) {
+                binding.textScan.text = getString(R.string.photo_suitable)
+                binding.textScan.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+                binding.imageViewSuitable.visibility = View.VISIBLE
+                binding.imageViewNotSuitable.visibility = View.GONE
+                binding.validationLayout.setBackgroundResource(R.drawable.rounded_background_validation_scan)
+                binding.textAnalysisResult.text = getString(R.string.analysis_result)
+            } else {
+                binding.textScan.text = getString(R.string.error_no_result)
+                binding.textScan.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                binding.imageViewSuitable.visibility = View.GONE
+                binding.imageViewNotSuitable.visibility = View.VISIBLE
+                binding.validationLayout.setBackgroundResource(R.drawable.rounded_background_validation_scan)
+                binding.textAnalysisResult.text = "Please take another photo"
+            }
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+            binding.textScan.text = getString(R.string.error_loading_image)
+            binding.textScan.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+            binding.imageViewSuitable.visibility = View.GONE
+            binding.imageViewNotSuitable.visibility = View.VISIBLE
+            binding.textAnalysisResult.text = ""
+            showToast(getString(R.string.error_loading_image))
         }
     }
 
+    private fun navigateToResult(file: File) {
+        try {
+            mBitmap = BitmapFactory.decodeFile(file.path)
 
-    private fun navigateToResult(title: String, confidence: Float, recommendedMedicine: String) {
-        val stream = ByteArrayOutputStream()
-        mBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        val byteArray = stream.toByteArray()
+            val diseaseResults = classifier.recognizeImage(mBitmap).firstOrNull()
+            val skinTypeResults = classifierSkintype.recognizeImage(mBitmap).firstOrNull()
 
-        Log.d("SCAN FRAGMENT", "$mBitmap")
+            diseaseResults?.let { disease ->
+                skinTypeResults?.let { skinType ->
+                    val diseaseName = disease.title
+                    val skinTypeName = skinType.title
+                    val recommendedMedicine = getMedicineRecommendation(diseaseName)
+                    val recommendedProducts = getProductRecommendation(skinTypeName)
 
-        val intent = Intent(requireContext(), ResultScanActivity::class.java).apply {
-            putExtra(ResultScanActivity.RESULT_IMAGE, currentImageUri.toString())
-            putExtra(ResultScanActivity.RESULT_TITLE, title)
-            putExtra(ResultScanActivity.RESULT_CONFIDENCE, confidence)
-            putExtra(ResultScanActivity.RESULT_MEDICINE, recommendedMedicine)
+                    val intent = Intent(requireContext(), ResultScanActivity::class.java).apply {
+                        putExtra(ResultScanActivity.RESULT_IMAGE, getFile?.absolutePath)
+
+                        putExtra(ResultScanActivity.RESULT_TITLE, diseaseName)
+                        putExtra(ResultScanActivity.RESULT_CONFIDENCE, disease.confidence)
+                        putExtra(ResultScanActivity.RESULT_MEDICINE, recommendedMedicine)
+
+                        putExtra(ResultScanActivity.RESULT_SKIN_TYPE, skinTypeName)
+                        putExtra(ResultScanActivity.RESULT_SKIN_CONFIDENCE, skinType.confidence)
+                        putExtra(ResultScanActivity.RESULT_PRODUCTS, Gson().toJson(recommendedProducts))
+                    }
+                    startActivity(intent)
+                } ?: run {
+                    showToast(getString(R.string.error_no_skin_type_result))
+                }
+            } ?: run {
+                showToast(getString(R.string.error_no_result))
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+            showToast(getString(R.string.error_loading_image))
         }
-        startActivity(intent)
     }
 
     private fun loadDiseaseData() {
@@ -188,7 +251,29 @@ class ScanFragment : Fragment() {
             diseaseDataList = gson.fromJson(json, type)
         } catch (e: IOException) {
             e.printStackTrace()
-            Toast.makeText(requireContext(), "Failed to load disease data", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Failed to load disease data",
+                Toast.LENGTH_SHORT
+            )
+                .show()
+        }
+    }
+
+    private fun loadSkinTypeData() {
+        try {
+            val inputStream: InputStream = requireContext().assets.open(mJsonPathSkinType)
+            val json = inputStream.bufferedReader().use { it.readText() }
+            val type: Type = object : TypeToken<List<Product>>() {}.type
+            skinTypeDataList = Gson().fromJson(json, type)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Toast.makeText(
+                requireContext(),
+                "Failed to load skin type data",
+                Toast.LENGTH_SHORT
+            )
+                .show()
         }
     }
 
@@ -198,33 +283,22 @@ class ScanFragment : Fragment() {
         return disease?.obat_rekomendasi ?: "No recommendation available"
     }
 
-//    private fun handleResult(result: String) {
-//        currentImageUri?.let { uri ->
-//            moveToResult(uri, result)
-//        }
-//    }
-//
-//    private fun moveToResult(title: String, confidence: Float) {
-//        val stream = ByteArrayOutputStream()
-//        mBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-//        val byteArray = stream.toByteArray()
-//
-//        val intent = Intent(requireContext(), ResultScanActivity::class.java).apply {
-//            putExtra(ResultScanActivity.RESULT_IMAGE, byteArray)
-//            putExtra(ResultScanActivity.RESULT_TITLE, title)
-//            putExtra(ResultScanActivity.RESULT_CONFIDENCE, confidence)
-//        }
-//        startActivity(intent)
-//    }
+    private fun getProductRecommendation(skinTypeName: String): List<Product> {
+        return skinTypeDataList.filter {
+            it.jenis_kulit.equals(
+                skinTypeName,
+                ignoreCase = true
+            )
+        }
+    }
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        Log.d(TAG, message)
     }
 
     companion object {
-        @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-        private const val READ_MEDIA_IMAGES = Manifest.permission.READ_MEDIA_IMAGES
-        private const val READ_EXTERNAL_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE
+        const val TAG = "ScanFragment"
     }
 
     override fun onDestroyView() {

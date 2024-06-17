@@ -17,7 +17,6 @@ class UserViewModel(private val preference: UserPreferences) : ViewModel() {
         }
     }
 
-
     fun getToken(): LiveData<String> {
         return preference.getToken().asLiveData()
     }

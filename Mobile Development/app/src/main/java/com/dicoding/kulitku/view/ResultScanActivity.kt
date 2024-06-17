@@ -1,35 +1,33 @@
 package com.dicoding.kulitku.view
 
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.dicoding.kulitku.MainActivity
 import com.dicoding.kulitku.R
+import com.dicoding.kulitku.api.Product
 import com.dicoding.kulitku.data.Analyze
 import com.dicoding.kulitku.databinding.ActivityResultScanBinding
-import java.io.File
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.text.NumberFormat
+import kotlin.random.Random
 
 class ResultScanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultScanBinding
-
     private lateinit var analyzeViewModel: AnalyzeViewModel
-//    private var analyzeResult: Analyze? = null
-//    private var analyzeResultList: MutableList<Analyze> = mutableListOf()
 
     companion object {
         const val RESULT_IMAGE = "RESULT_IMAGE"
         const val RESULT_TITLE = "RESULT_TITLE"
         const val RESULT_CONFIDENCE = "RESULT_CONFIDENCE"
-        const val RESULT_MEDICINE = "result_medicine"
-        private const val REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1
-        private const val TAG = "ResultScanActivity"
+        const val RESULT_MEDICINE = "RESULT_MEDICINE"
+
+        const val RESULT_SKIN_TYPE = "RESULT_SKIN_TYPE"
+        const val RESULT_SKIN_CONFIDENCE = "RESULT_SKIN_CONFIDENCE"
+        const val RESULT_PRODUCTS = "RESULT_PRODUCTS"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,206 +35,81 @@ class ResultScanActivity : AppCompatActivity() {
         binding = ActivityResultScanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Hasil Analisis"
+
         analyzeViewModel = obtainViewModel(this@ResultScanActivity)
 
         // Menampilkan hasil gambar dan analisis
-//        val byteArray = intent.getByteArrayExtra(RESULT_IMAGE)
-        val imageUriString = intent.getStringExtra(RESULT_IMAGE)
-        Log.d(TAG, imageUriString.toString())
-        val imageUri = imageUriString?.let { Uri.parse(it) }
-        Log.d(TAG, imageUri.toString())
-        val title = intent.getStringExtra(RESULT_TITLE)
-        val confidence = intent.getFloatExtra(RESULT_CONFIDENCE, 0.0f)
-        val recommendedMedicine = intent.getStringExtra(RESULT_MEDICINE)
+        val resultImage = intent.getStringExtra(RESULT_IMAGE)
+        val imageUri = resultImage?.let { Uri.parse(it) }
+        val resultTitle = intent.getStringExtra(RESULT_TITLE)
+        val resultConfidence = intent.getFloatExtra(RESULT_CONFIDENCE, 0.0f)
+        val skinType = intent.getStringExtra(RESULT_SKIN_TYPE)
+        val skinConfidence = intent.getFloatExtra(RESULT_SKIN_CONFIDENCE, 0.0f)
+        val resultMedicine = intent.getStringExtra(RESULT_MEDICINE)
+
+        // Ambil data produk yang direkomendasikan
+        val productsJson = intent.getStringExtra(RESULT_PRODUCTS)
+        val productListType = object : TypeToken<List<Product>>() {}.type
+        val recommendedProducts = Gson().fromJson<List<Product>>(productsJson, productListType)
+        val resultProduct = buildResultText(recommendedProducts)
 
         imageUri?.let {
             binding.resultImage.setImageURI(it)
         }
-        binding.resultType.text = title
-        binding.resultScore.text = confidence.toString()
-        binding.resultMedicine.text = "Recommended Medicine: $recommendedMedicine"
+        binding.resultType.text = resultTitle
+        binding.resultScore.text = getString(
+            R.string.analyze_score,
+            NumberFormat.getPercentInstance().format(resultConfidence)
+        )
+        binding.resultMedicine.text = "$resultMedicine"
 
-        // Request write permission at runtime
-        if (ContextCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                REQUEST_CODE_WRITE_EXTERNAL_STORAGE
-            )
-        }
+        binding.resultSkinType.text = skinType
 
         // Save result to history
-        binding.saveButton.setOnClickListener {
-            val analyzeResult = Analyze(
-                uri = imageUriString ?: "",
-                type = title ?: "",
-                confidence = confidence
-            )
-//            analyzeResultList.add(analyzeResult)
-            analyzeViewModel.insert(analyzeResult)
-            showToast("Analyze data inserted")
+        val analyzeResult = Analyze(
+            uri = resultImage ?: "",
+            type = resultTitle ?: "",
+            confidence = resultConfidence,
+            medicine = resultMedicine,
+            skin_type = skinType,
+            confidence_skin_type = skinConfidence,
+            product = Gson().toJson(resultProduct)
+        )
+
+        analyzeViewModel.insertAnalyze(analyzeResult)
+
+        binding.recommendationButton.setOnClickListener {
+            val intent = Intent(this, RecommendationActivity::class.java).apply {
+                putExtra(RecommendationActivity.RESULT_SELECTED_PRODUCT, Gson().toJson(resultProduct))
+            }
+            startActivity(intent)
+        }
+
+        binding.finishButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun buildResultText(products: List<Product>): Product? {
+
+        return if (products.isNotEmpty()) {
+            val randomIndex = Random.nextInt(products.size)
+            products[randomIndex]
+        } else {
+            null
         }
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): AnalyzeViewModel {
-        val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(AnalyzeViewModel::class.java)
+        val factory = MainViewModelFactory(activity.applicationContext)
+        return ViewModelProvider(activity, factory)[AnalyzeViewModel::class.java]
     }
 
-    private fun byteArrayToUri(byteArray: ByteArray): Uri {
-        val file = File(cacheDir, "image.png")
-        file.writeBytes(byteArray)
-        return Uri.fromFile(file)
-    }
-
-
-//    private fun analyzeImage(uri: Uri) {
-//        binding.progressBar.visibility = View.GONE
-//        skinDetectionHelper = SkinDetectionHelper(
-//            context = this,
-//            classifierListener = object : SkinDetectionHelper.ClassifierListener {
-//                override fun onError(error: String) {
-//                    runOnUiThread {
-//                        showToast("Error analyzing image")
-//                    }
-//                }
-//
-//                override fun onResult(result: String) {
-//                    runOnUiThread {
-//                        binding.progressBar.visibility = View.GONE
-//
-//                        binding.resultType.text = result
-//
-//                        Log.i(TAG, "Hasil Deteksi $result")
-//
-//                        analyzeResult = Analyze(
-//                            uri = uri.toString(),
-//                            type = result
-//                        )
-//                    }
-//                }
-//            }
-//        )
-//
-//        skinDetectionHelper.classifyStaticImage(uri)
-//    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 }
-
-
-
-//package com.dicoding.kulitku.view
-//
-//import SkinModelHelper
-//import android.content.pm.PackageManager
-//import android.net.Uri
-//import androidx.appcompat.app.AppCompatActivity
-//import android.os.Bundle
-//import android.util.Log
-//import android.view.View
-//import android.widget.Toast
-//import androidx.core.app.ActivityCompat
-//import androidx.core.content.ContextCompat
-//import androidx.lifecycle.ViewModelProvider
-//import com.dicoding.kulitku.data.Analyze
-//import com.dicoding.kulitku.databinding.ActivityResultScanBinding
-//
-//class ResultScanActivity : AppCompatActivity() {
-//    private lateinit var binding: ActivityResultScanBinding
-//
-//    private lateinit var skinDetectionHelper: SkinModelHelper
-//    private lateinit var analyzeViewModel: AnalyzeViewModel
-//    private var analyzeResult: Analyze? = null
-//
-//    companion object {
-//        const val EXTRA_IMAGE_URI = "extra_image_uri"
-//        private const val REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1
-//        private const val TAG = "ResultScanActivity"
-//    }
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        binding = ActivityResultScanBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        analyzeViewModel = obtainViewModel(this@ResultScanActivity)
-//
-//        val imageUri = Uri.parse(intent.getStringExtra(EXTRA_IMAGE_URI))
-//        binding.progressBar.visibility = View.VISIBLE
-//        imageUri.let {
-//            binding.resultImage.setImageURI(it)
-//            loadModelAndAnalyzeImage(it)
-//        }
-//
-//        // Request write permission at runtime
-//        if (ContextCompat.checkSelfPermission(
-//                this,
-//                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-//            ) != PackageManager.PERMISSION_GRANTED
-//        ) {
-//            ActivityCompat.requestPermissions(
-//                this,
-//                arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-//                REQUEST_CODE_WRITE_EXTERNAL_STORAGE
-//            )
-//        }
-//
-//        // Save result to history
-//        binding.saveButton.setOnClickListener {
-//            if (analyzeResult == null) {
-//                showToast("Analyze insert Error")
-//            } else {
-//                analyzeViewModel.insert(analyzeResult!!)
-//                showToast("Analyze data inserted")
-//            }
-//        }
-//    }
-//
-//    private fun obtainViewModel(activity: AppCompatActivity): AnalyzeViewModel {
-//        val factory = ViewModelFactory.getInstance(activity.application)
-//        return ViewModelProvider(activity, factory).get(AnalyzeViewModel::class.java)
-//    }
-//
-//    private fun loadModelAndAnalyzeImage(uri: Uri) {
-//        skinDetectionHelper = SkinModelHelper(
-//            context = this,
-//            classifierListener = object : SkinModelHelper.ClassifierListener {
-//                override fun onError(error: String) {
-//                    runOnUiThread {
-//                        showToast("Error analyzing image")
-//                    }
-//                }
-//
-//                override fun onResult(result: String) {
-//                    runOnUiThread {
-//                        binding.progressBar.visibility = View.GONE
-//                        binding.resultType.text = result
-//                        Log.i(TAG, "Hasil Deteksi $result")
-//
-//                        analyzeResult = Analyze(
-//                            uri = uri.toString(),
-//                            type = result
-//                        )
-//                    }
-//                }
-//            }
-//        )
-//
-//        // Load model from JSON
-//        skinDetectionHelper.loadModelFromJSON("model.json")
-//
-//        // Classify image
-//        skinDetectionHelper.classifyStaticImage(uri)
-//    }
-//
-//    private fun showToast(message: String) {
-//        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-//    }
-//}

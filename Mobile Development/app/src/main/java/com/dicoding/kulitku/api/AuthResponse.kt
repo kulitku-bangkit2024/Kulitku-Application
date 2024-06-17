@@ -16,7 +16,7 @@ data class LoginData(
 // USER
 data class UserData(
     @SerializedName("id_user") val idUser: String,
-    @SerializedName("username") val username: String,
+    @SerializedName("name") val name: String,
     @SerializedName("email") val email: String,
     @SerializedName("password") val password: String
 )
@@ -32,7 +32,7 @@ data class RegisterResponse(
 data class LoginResponse(
     @SerializedName("success") val success: Boolean,
     @SerializedName("userId") val userId: String,
-    @SerializedName("userName") val userName: String,
+    @SerializedName("name") val name: String,
     @SerializedName("message") val message: String
 )
 
@@ -53,7 +53,7 @@ data class UpdateProfileResponse(
     @SerializedName("success") val success: Boolean,
     @SerializedName("message") val message: String,
     @SerializedName("id_user") val idUser: String,
-    @SerializedName("userName") val userName: String,
+    @SerializedName("username") val userName: String,
     @SerializedName("email") val email: String,
     @SerializedName("password") val password: String
 )
@@ -67,4 +67,14 @@ data class DeleteProfileResponse(
 data class DiseaseData(
     val nama_penyakit: String,
     val obat_rekomendasi: String
+)
+
+data class Product(
+    val id_produk: Int,
+    val nama_produk: String,
+    val kategori_produk: String,
+    val jenis_kulit: String,
+    val manfaat_utama: String,
+    val cara_penggunaan: String,
+    val gambar_produk: String,
 )

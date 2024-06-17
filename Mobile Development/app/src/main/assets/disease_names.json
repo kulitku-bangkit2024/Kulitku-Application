@@ -1,0 +1,106 @@
+[
+  {
+    "nama_penyakit": "Acne and Rosacea",
+    "obat_rekomendasi": "benzoyl peroxide, clindamycin, erythromycin, tretinoin, isotretinoin"
+  },
+  {
+    "nama_penyakit": "Actinic Keratosis Basal Cell Carcinoma",
+    "obat_rekomendasi": "fluorouracil, imiquimod, ingenolmebutate, dan diclofenac"
+  },
+  {
+    "nama_penyakit": "Athlete Foot",
+    "obat_rekomendasi": "Salep Kulit 88, Ketoconazole Cream, Miconazole Cream, Canesten, Daktarin, Fungiderm, atau Kalpanax."
+  },
+  {
+    "nama_penyakit": "Atopic Dermatitis",
+    "obat_rekomendasi": "Kenacort, Bufacomb, Esperson, Pharmason, dan Desoximetasone"
+  },
+  {
+    "nama_penyakit": "Cellulitis Impetigo",
+    "obat_rekomendasi": "penisilin, clindamycin, sefalosporin, dan makrolid, antibiotik dikloksasilin, sefaleksin, trimetoprim dengan sulfametoksazol, klindamisin, atau doksisiklin"
+  },
+  {
+    "nama_penyakit": "Chickenpox",
+    "obat_rekomendasi": "CTM, Mederma Proaktif, Ozen, Clinovir, atau Herclov."
+  },
+  {
+    "nama_penyakit": "Cutaneous Larva Migrans",
+    "obat_rekomendasi": "Albendazole, Ivermectin, Tiabendazole"
+  },
+  {
+    "nama_penyakit": "Eczema",
+    "obat_rekomendasi": "Clobetasol, Kloderma, Diprosone, Ikaderm, Elopro Salep"
+  },
+  {
+    "nama_penyakit": "Exanthems",
+    "obat_rekomendasi": "antihistamines, corticosteroids, topical emollients"
+  },
+  {
+    "nama_penyakit": "Herpes HPV",
+    "obat_rekomendasi": "Glizigen Spray, Clinovir Cream, dan Zovirax Cream"
+  },
+  {
+    "nama_penyakit": "Disorders of Pigmentation",
+    "obat_rekomendasi": "Obat oles retinoid, Obat oles hydroquinone"
+  },
+  {
+    "nama_penyakit": "Lupus",
+    "obat_rekomendasi": "Voltaren® Celebrex® dan Orudis®, Plaquenil®, azathioprine, cyclophosphamide dan methotrexate"
+  },
+  {
+    "nama_penyakit": "Melanoma Skin Cancer Nevi",
+    "obat_rekomendasi": "Pembrolizumab, Atezolizumab, Vemurafenib, imatinib, nilotinib"
+  },
+  {
+    "nama_penyakit": "Nail Fungus",
+    "obat_rekomendasi": "Emtrix Gel, Fungistop, Fungiderm Cream, Mustika Ratu Minyak Zaitun, serta Diflucan"
+  },
+  {
+    "nama_penyakit": "Normal",
+    "obat_rekomendasi": "Kulit anda normal, Tidak ada obat yang disarankan"
+  },
+  {
+    "nama_penyakit": "Poison Ivy and Contact Dermatitis",
+    "obat_rekomendasi": "Antibiotik, calamine, prednisone"
+  },
+  {
+    "nama_penyakit": "Psoriasis pictures Lichen Planus",
+    "obat_rekomendasi": "beclometasone topikal, Antihistamin, azathioprine, mycophenolate, cyclosporine, dan methotrexate, isotretinoin atau acitretin"
+  },
+  {
+    "nama_penyakit": "Ringworm",
+    "obat_rekomendasi": "New Astar Cream, Formyco, Zoralin, Mycoral, dan Canesten"
+  },
+  {
+    "nama_penyakit": "Seborrheic Keratoses",
+    "obat_rekomendasi": "Retinoid (tretinoin), 5-Fluorouracil (5-FU) topikal"
+  },
+  {
+    "nama_penyakit": "Shingles",
+    "obat_rekomendasi": "acyclovir, famciclovir, dan valacyclovir, acyclovir, callusol, kutilos"
+  },
+  {
+    "nama_penyakit": "Systemic Disease",
+    "obat_rekomendasi": "NSAID, Kortikosteroid, Hydroxycloroquine, imunosupresan, Rituximab"
+  },
+  {
+    "nama_penyakit": "Tinea Ringworm Candidiasis",
+    "obat_rekomendasi": "Daktarin, Canesten, Kalpanax, Fungiderm, Mycoral, Salep Kulit 88, Myco-Z, Trosyd"
+  },
+  {
+    "nama_penyakit": "Urticaria Hives",
+    "obat_rekomendasi": "loratadine, cetirizine, dan fexofenadine, chlorperamine, dypenhidramine, prednisolone, cimetidine, famotidine dan ranitidine, Omaluzimab, Siklosporin"
+  },
+  {
+    "nama_penyakit": "Vascular Tumors",
+    "obat_rekomendasi": "Kortikosteroid, Antikonvulsan, Antiemetik, Lomustine, Temozolomide, Bevacizumab, Everolimus"
+  },
+  {
+    "nama_penyakit": "Vasculitis",
+    "obat_rekomendasi": "cyclophosphamide atau azathioprine, prednisone atau methylprednisolone"
+  },
+  {
+    "nama_penyakit": "Warts Molluscum",
+    "obat_rekomendasi": "kalusol, acyclovir, callusol, kutilos"
+  }
+]

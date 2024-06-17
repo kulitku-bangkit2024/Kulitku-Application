@@ -1,0 +1,479 @@
+[
+  {
+    "id_produk": 1,
+    "nama_produk": "Himalaya Purifying Neem Face Wash",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Oily",
+    "manfaat_utama": "Membersihkan minyak berlebih dan kotoran, membantu mengatasi jerawat.",
+    "cara_penggunaan": "Gunakan pada wajah yang telah dibasahi, pijat lembut, dan bilas dengan air bersih.",
+    "gambar_produk": "https://api.watsons.co.id/medias/HIMALAYA-PURIFYING-NEEM-FACIAL-WASH-50ML-53367.jpg?context=bWFzdGVyfHd0Y2lkL2ltYWdlc3wyMTE3ODh8aW1hZ2UvanBlZ3xhR1k1TDJnMk5DOHhNVFkxT0RreE5qWTFPVEl6TUM5SVNVMUJURUZaUVNCUVZWSkpSbGxKVGtjZ1RrVkZUU0JHUVVOSlFVd2dWMEZUU0NBMU1FMU1MVFV6TXpZM0xtcHdad3wxOGUwYzkzMTg0NWI5ZTlmYjJlOTQwNDExYzNjNmIyMzBmYmRmZWQ2MDEyNzhkNWFiZmFmODBmMTNiMjA3ZmUz"
+  },
+  {
+    "id_produk": 2,
+    "nama_produk": "ElsheSkin Oily Cleanser Wash",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 3,
+    "nama_produk": "Acnes Natural Face Wash Oil Control",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 4,
+    "nama_produk": "Evershine Moringa Facial Wash",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 5,
+    "nama_produk": "Clean & Clear Deep Action Daily Pore Cleanser",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 6,
+    "nama_produk": "Biore Facial Foam Bright & Oil Clear",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 7,
+    "nama_produk": "Wardah Perfect Bright Creamy Foam Brightening + Oil Control",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 8,
+    "nama_produk": "Senka Acne Perfect Whip Facial Wash",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 9,
+    "nama_produk": "COSRX Low pH Good Morning Gel Cleanser",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 10,
+    "nama_produk": "Somethinc Ceramic Skin Saviour Moisturizer Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 11,
+    "nama_produk": "Azarine Active Bright Brightening Day Moisturiser",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "oily"
+  },
+  {
+    "id_produk": 12,
+    "nama_produk": "La Roche Posay Effaclar Duo+ Moisturizer Acne",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 13,
+    "nama_produk": "Azarine Oil Free Brightening Daily Moisturizer",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 14,
+    "nama_produk": "Emina Ms. Pimple Acne Solution Moisturizing Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 15,
+    "nama_produk": "Safi Acne Expert Soothing Gel Moisturizer Cream",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 16,
+    "nama_produk": "ElsheSkin Hydra Boost Oil Free Moisturizer",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 17,
+    "nama_produk": "Wardah Crystal Secret Refreshing Day Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 18,
+    "nama_produk": "Npure Centella Asiatica Toner",
+    "kategori_produk": "Toner",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 19,
+    "nama_produk": "Garnier Micellar Water Blue",
+    "kategori_produk": "Cleansing water",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 20,
+    "nama_produk": "Erha Acneact Blemish Soothing",
+    "kategori_produk": "Serum",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 21,
+    "nama_produk": "Scarlett Acne Serum",
+    "kategori_produk": "Serum",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 22,
+    "nama_produk": "Emina Acne Serum",
+    "kategori_produk": "Serum",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 23,
+    "nama_produk": "Avoskin Your Skin Bae Salicylic Acid 2% + Zinc 30 ml",
+    "kategori_produk": "Serum",
+    "jenis_kulit": "Oily"
+  },
+  {
+    "id_produk": 24,
+    "nama_produk": "SKINTIFIC 5X Ceramide Skin Barrier Repair",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 25,
+    "nama_produk": "SOMETHINC Calm Down! Skinpair R-Cover Cream Moisturizer",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 26,
+    "nama_produk": "Skin Game Kind Moisturizer",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 27,
+    "nama_produk": "THE ORIGINOTE Hyalucera Moisturizer Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 28,
+    "nama_produk": "L’Oreal Paris Revitalift Hyaluronic Acid Plumping Moisturizer Day Cream",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 29,
+    "nama_produk": "CeraVe daily moisturizing lotion",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 30,
+    "nama_produk": "Cetaphil Moisturizing Cream",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 31,
+    "nama_produk": "Sebamed Day Defence Cream Anti-Dry",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 32,
+    "nama_produk": "Laneige Water Bank Hydro Gel Cream EX",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 33,
+    "nama_produk": "Cetaphil Daily Oil-Free Hydrating Lotion With Hyaluronic Acid",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 34,
+    "nama_produk": "Erha Moisturizer for Very Dry Skin",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 35,
+    "nama_produk": "Somethinc Ceramic Skin Saviour Moisturizer Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 36,
+    "nama_produk": "Wardah Hydra Rose Dewy Aqua Day Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 37,
+    "nama_produk": "Sariayu Putih Langsat Skin Brightening Moisturizer",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 38,
+    "nama_produk": "Nivea Moisturizing Cream",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 39,
+    "nama_produk": "Hada Labo Perfect X Simple Perfect 3D Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 40,
+    "nama_produk": "Garnier Micellar Oil-Infused Cleansing Water",
+    "kategori_produk": "Cleansing water",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 41,
+    "nama_produk": "NIVEA MicellAIR XPERT",
+    "kategori_produk": "Cleansing water",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 42,
+    "nama_produk": "SENKA Perfect Whip Gentle Rose Facial Foam",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 43,
+    "nama_produk": "Wardah Hydrating Aloe Gel",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 44,
+    "nama_produk": "The Originote Cicamide Facial Cleanser",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 45,
+    "nama_produk": "CeraVe Hydrating Cleanser",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 46,
+    "nama_produk": "Glad2Glow Milk Amino Acid Gentle Cleanser Face Wash",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 47,
+    "nama_produk": "Whitelab Brightening Facial Wash",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 48,
+    "nama_produk": "HADA LABO Gokujyun Ultimate Moisturizing Face Wash",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 49,
+    "nama_produk": "Gentle Facial Wash Avoskin Natural Sublime Facial Cleanser",
+    "kategori_produk": "facewash",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 50,
+    "nama_produk": "Avoskin Your Skin Bae Niacinamide 7% + Alpha Arbutin 1% + Kale productnation",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 51,
+    "nama_produk": "Avoskin Miraculous Refining Serum",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 52,
+    "nama_produk": "Innisfree Green Tea Seed Serum",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 53,
+    "nama_produk": "Erha 21 C Serum",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 54,
+    "nama_produk": "The Ordinary Hyaluronic Acid 2 + B5",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 55,
+    "nama_produk": "HYALuronic B5 Serum",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 56,
+    "nama_produk": "Wardah Hydra Rose Micro Gel Serum",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 57,
+    "nama_produk": "Trueve Vitamin C & Ceramide Brightening Serum",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 58,
+    "nama_produk": "Whitelab Brightening Face Serum",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Dry"
+  },
+  {
+    "id_produk": 59,
+    "nama_produk": "Avoskin Natural Sublime Facial Cleanser",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 60,
+    "nama_produk": "Pigeon Facial Foam",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 61,
+    "nama_produk": "Azarine Active Bright Brightening",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 62,
+    "nama_produk": "Whitelab pH-Balanced Facial Cleanser",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 63,
+    "nama_produk": "The Originote Cicamide Facial Cleanser",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 64,
+    "nama_produk": "Cetaphil Gentle Skin Cleanser",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 65,
+    "nama_produk": "Somethinc Low pH Gentle Jelly Cleanser",
+    "kategori_produk": "Facewash",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 66,
+    "nama_produk": "Innisfree The Green Tea Seed Hyaluronic",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 67,
+    "nama_produk": "La Roche Posay Cicaplast B5 Ultra Repair Serum 30 ml",
+    "kategori_produk": "serum",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 68,
+    "nama_produk": "Nature Republic Soothing & Moisture Aloe Vera 92% Soothing Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 69,
+    "nama_produk": "Sebamed Moisturizing Cream productnation",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 70,
+    "nama_produk": "Olay – Regenerist Whip UV",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 71,
+    "nama_produk": "Wardah – Perfect Bright Moisturizer Normal Skin",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 72,
+    "nama_produk": "Emina – Moist in a Bottle",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 73,
+    "nama_produk": "The Body Shop – Aloe Soothing Moisture Lotion SPF 15",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 74,
+    "nama_produk": "Cetaphil – Moisturizing Cream",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 75,
+    "nama_produk": "Wardah Nature Daily Witch Hazel Purifying Moisturizer Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 76,
+    "nama_produk": "Hadalabo Gokyujun Ultimate Moisturizing Milk",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 77,
+    "nama_produk": "Joylab Moisture Bomb Pudding Gel Creme",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 78,
+    "nama_produk": "Cerave Moisturizing Cream",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  },
+  {
+    "id_produk": 79,
+    "nama_produk": "Something Ceramic Skin Saviour Moisturizer Gel",
+    "kategori_produk": "Moisturizer",
+    "jenis_kulit": "Normal"
+  }
+]

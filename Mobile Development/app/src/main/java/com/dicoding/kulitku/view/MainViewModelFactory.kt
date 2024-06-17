@@ -17,6 +17,14 @@ class MainViewModelFactory(private val context: Context) : ViewModelProvider.Fac
             return LoginViewModel(Injection.provideRepository(context)) as T
         }
 
+        if (modelClass.isAssignableFrom(AnalyzeViewModel::class.java)) {
+            return AnalyzeViewModel(Injection.provideRepository(context)) as T
+        }
+
+        if (modelClass.isAssignableFrom(HistoryViewModel::class.java)) {
+            return HistoryViewModel(Injection.provideRepository(context)) as T
+        }
+
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

@@ -78,11 +78,9 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.edEmail.text.toString().trim()
             val password = binding.edPassword.text.toString().trim()
 
-//            if (validateLoginInput(email, password)) {
-//                loginUser(email, password)
-//            }
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            if (validateLoginInput(email, password)) {
+                loginUser(email, password)
+            }
         }
 
         loginViewModel.message.observe(this) { messageLogin ->
@@ -149,7 +147,7 @@ class LoginActivity : AppCompatActivity() {
             val user = loginViewModel.userLogin.value
             userViewModel.saveLogin(true)
             user?.userId?.let { userViewModel.saveToken(it) }
-            user?.userName?.let { userViewModel.saveName(it) }
+            user?.name?.let { userViewModel.saveName(it) }
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

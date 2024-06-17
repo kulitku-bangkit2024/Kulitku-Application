@@ -12,7 +12,5 @@ interface AnalyzeDao {
     fun insert(analyze: Analyze)
 
     @Query("SELECT * FROM `analyze` ORDER BY id ASC")
-    fun getAll() : LiveData<List<Analyze>>
-
-
+    fun getAll(): LiveData<List<Analyze>>
 }

@@ -7,19 +7,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.dicoding.kulitku.fragment.HomeFragment"
-        android:label="@string/title_home"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
-    <!-- Tambahkan fragment lainnya di sini -->
 
-<!--    sementara pake news-->
+    <!--    sementara pake news-->
     <fragment
         android:id="@+id/navigation_news"
         android:name="com.dicoding.kulitku.fragment.NewsFragment"
         android:label="@string/title_news"
         tools:layout="@layout/fragment_news">
-<!--        <action-->
-<!--            android:id="@id/navigation_detail_article"-->
-<!--            app:destination="@id/navigation_detail_article"/>-->
+        <!--        <action-->
+        <!--            android:id="@id/navigation_detail_article"-->
+        <!--            app:destination="@id/navigation_detail_article"/>-->
     </fragment>
     <fragment
         android:id="@+id/navigation_scan"
@@ -43,18 +42,16 @@
         tools:layout="@layout/fragment_skin_information">
         <action
             android:id="@id/navigation_detail_skin_information"
-            app:destination="@id/navigation_detail_skin_information"/>
+            app:destination="@id/navigation_detail_skin_information" />
     </fragment>
-
-
 
     <fragment
         android:id="@+id/navigation_detail_article"
         android:name="com.dicoding.kulitku.fragment.DetailArticleFragment"
-        tools:layout="@layout/fragment_detail_article"/>
+        tools:layout="@layout/fragment_detail_article" />
 
     <fragment
         android:id="@+id/navigation_detail_skin_information"
         android:name="com.dicoding.kulitku.fragment.DetailSkinInformationFragment"
-        tools:layout="@layout/fragment_detail_information"/>
+        tools:layout="@layout/fragment_detail_information" />
 </navigation>

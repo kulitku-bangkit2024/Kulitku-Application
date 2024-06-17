@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.dicoding.kulitku.api.NewsItem
 import com.dicoding.kulitku.data.NewsRepository
 
-
 class NewsViewModel : ViewModel() {
     private val newsRepository = NewsRepository()
     private val _newsList = MutableLiveData<List<NewsItem>>()

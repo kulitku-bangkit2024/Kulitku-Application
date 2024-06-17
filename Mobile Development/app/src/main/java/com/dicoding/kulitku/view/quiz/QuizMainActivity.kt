@@ -24,17 +24,11 @@ class QuizMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        binding.btnBack.setOnClickListener {
-//            val intent = Intent(this, FragmentHomeBinding::class.java)
-//            startActivity(intent)
-//        }
-
         binding.btnBack.setOnClickListener {
-            // Menyiapkan intent dengan data atau flag untuk diterima oleh FragmentHome
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("backToFragmentHome", true)
             startActivity(intent)
-            finish() // Optional, tergantung pada kebutuhan aplikasi
+            finish()
         }
 
     }

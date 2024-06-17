@@ -3,11 +3,20 @@ package com.dicoding.kulitku.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dicoding.kulitku.api.*
+import com.dicoding.kulitku.data.Analyze
+import com.dicoding.kulitku.data.AnalyzeRoomDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Repository(private val apiServiceAuth: ApiServiceAuth) {
+class Repository(private val apiServiceAuth: ApiServiceAuth, private val analyzeRoomDatabase: AnalyzeRoomDatabase) {
+
+    private val analyzeDao = analyzeRoomDatabase.analyzeDao()
+
+    private var _analyze = MutableLiveData<List<Analyze>>()
+    var analyze: LiveData<List<Analyze>> = _analyze
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -176,5 +185,15 @@ class Repository(private val apiServiceAuth: ApiServiceAuth) {
 //            }
 //        })
 //    }
+
+    fun getAllAnalyze(): LiveData<List<Analyze>> {
+        return analyzeDao.getAll()
+    }
+
+    suspend fun insertAnalyze(analyze: Analyze) {
+        withContext(Dispatchers.IO) {
+            analyzeDao.insert(analyze)
+        }
+    }
 }
 

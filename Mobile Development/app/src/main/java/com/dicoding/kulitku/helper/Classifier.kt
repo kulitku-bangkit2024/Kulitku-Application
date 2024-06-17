@@ -56,10 +56,6 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
         return getSortedResult(result)
     }
 
-    fun scaleImage(bitmap: Bitmap): Bitmap {
-        return Bitmap.createScaledBitmap(bitmap, inputSize, inputSize, false)
-    }
-
     private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
         val byteBuffer = ByteBuffer.allocateDirect(4 * inputSize * inputSize * pixelSize)
         byteBuffer.order(ByteOrder.nativeOrder())

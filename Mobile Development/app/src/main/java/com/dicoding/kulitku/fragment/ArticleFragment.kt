@@ -28,21 +28,9 @@ class ArticleFragment : Fragment(), OnArticleClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val articleViewModel =
-//            ViewModelProvider(this).get(ArticleViewModel::class.java)
 
         _binding = FragmentArticleBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        // Access the activity's toolbar and set it up
-        val toolbar = (activity as? AppCompatActivity)?.supportActionBar
-        toolbar?.setDisplayHomeAsUpEnabled(true)
-        (activity as? AppCompatActivity)?.supportActionBar?.title = "Articles"
-
-        // Set up the navigation click listener for the toolbar
-        binding.toolbar.setNavigationOnClickListener {
-            activity?.onBackPressed()
-        }
 
         val rvArticle = binding.rvArticle
         val layoutManager = GridLayoutManager(context, 2)

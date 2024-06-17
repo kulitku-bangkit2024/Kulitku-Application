@@ -13,5 +13,4 @@ class RegisterViewModel(private val repository: Repository) : ViewModel() {
     fun register(registerData: RegisterData) {
         repository.registerUser(registerData)
     }
-
 }

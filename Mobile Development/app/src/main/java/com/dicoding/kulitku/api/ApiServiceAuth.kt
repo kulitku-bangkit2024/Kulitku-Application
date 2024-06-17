@@ -33,7 +33,7 @@ interface ApiServiceAuth {
 
     @DELETE("user/delete")
     fun deleteUserProfile(
-        @Query("id") id: String
+        @Query("id_user") id: String
     ): Call<DeleteProfileResponse>
 
 //    @GET("auth/google/callback")

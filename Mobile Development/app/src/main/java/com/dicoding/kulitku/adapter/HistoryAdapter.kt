@@ -11,18 +11,31 @@ import com.dicoding.kulitku.R
 import com.dicoding.kulitku.data.Analyze
 import java.text.NumberFormat
 
-class HistoryAdapter(private var historyList: ArrayList<Analyze>) :
+class HistoryAdapter(private var historyList: List<Analyze>, private val itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
+    interface ItemClickListener {
+        fun onItemClick(analyze: Analyze)
+    }
+
     fun updateData(newList: List<Analyze>) {
-        historyList = newList as ArrayList<Analyze>
+        historyList = newList
         notifyDataSetChanged()
     }
 
-    class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+    inner class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val analyzeHistoryImg: ImageView = item.findViewById(R.id.analyze_history_image)
         val analyzeHistoryType: TextView = item.findViewById(R.id.analyze_history_type)
         val analyzeHistoryScore: TextView = item.findViewById(R.id.analyze_history_score)
+
+        fun bind(analyze: Analyze) {
+            analyzeHistoryImg.setImageURI(Uri.parse(analyze.uri))
+            analyzeHistoryType.text = analyze.type
+            analyzeHistoryScore.text = itemView.context.getString(
+                R.string.analyze_score,
+                NumberFormat.getPercentInstance().format(analyze.confidence)
+            )
+        }
     }
 
     override fun onCreateViewHolder(
@@ -36,12 +49,10 @@ class HistoryAdapter(private var historyList: ArrayList<Analyze>) :
 
     override fun onBindViewHolder(holder: HistoryAdapter.ViewHolder, position: Int) {
         val analyzeHistory = historyList[position]
-        holder.analyzeHistoryImg.setImageURI(Uri.parse(analyzeHistory.uri))
-        holder.analyzeHistoryType.text = analyzeHistory.type
-        holder.analyzeHistoryScore.text = holder.itemView.context.getString(
-            R.string.analyze_score,
-            NumberFormat.getPercentInstance().format(analyzeHistory.confidence).toString()
-        )
+        holder.bind(analyzeHistory)
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(analyzeHistory)
+        }
     }
 
     override fun getItemCount(): Int {

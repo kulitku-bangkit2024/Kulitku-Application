@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/gray2"
+        android:backgroundTint="@color/white"
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp"
         app:fabCradleMargin="10dp"
@@ -47,5 +47,6 @@
         android:src="@drawable/ic_camera24"
         android:backgroundTint="@color/terracotta"
         app:layout_anchor="@id/bottomAppBar"
-        app:layout_anchorGravity="center"/>
+        app:layout_anchorGravity="center"
+        app:tint="@android:color/white"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

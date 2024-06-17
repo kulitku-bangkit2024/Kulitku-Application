@@ -33,8 +33,6 @@ class SkinInformationAdapter(private val informasiItem: List<InformationItem>, p
         fun bind(informiItem: InformationItem) {
             binding.articleImage.setImageResource(informiItem.imageResId)
             binding.articleTitle.text = informiItem.title
-//            binding.articleDescription.text = informiItem.desctiption
-//            binding.viewMore
         }
     }
 }

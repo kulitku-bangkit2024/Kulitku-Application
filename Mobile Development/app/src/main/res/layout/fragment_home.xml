@@ -3,17 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="40dp"
+    android:layout_marginBottom="38dp"
     android:paddingHorizontal="12dp"
     tools:context=".fragment.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="20dp">
+        android:paddingBottom="18dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +22,8 @@
             <!--AppBar-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profileCircleImageView"
@@ -323,46 +323,7 @@
                         android:textColor="#ffffff" />
 
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
-
-            <!--Article Title-->
-<!--            <RelativeLayout-->
-<!--                android:id="@+id/titleSection2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="24dp">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentStart="true"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_marginStart="8dp"-->
-<!--                    android:text="@string/tips_trik"-->
-<!--                    android:textSize="20sp"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_marginEnd="8dp"-->
-<!--                    android:text="See All"-->
-<!--                    android:textColor="@color/gold"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold" />-->
-<!--            </RelativeLayout>-->
-
-            <!-- Article Card -->
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/recyclerViewArticles"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:scrollbars="none"-->
-<!--                tools:listitem="@layout/item_article" />-->
 
             <!--Informasi Kulit-->
             <RelativeLayout
