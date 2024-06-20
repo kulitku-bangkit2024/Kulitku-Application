@@ -1,12 +1,17 @@
 package com.dicoding.kulitku.view
 
+import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 
-class ProfileViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Profile Fragment"
+class ProfileViewModel(userPreferences: UserPreferences) : ViewModel() {
+    val name: LiveData<String> = userPreferences.getName().asLiveData()
+    val email: LiveData<String> = userPreferences.getEmail().asLiveData()
+
+    init {
+        email.observeForever { email ->
+            Log.d("ProfileViewModel", "Email observed: $email")
+        }
     }
-    val text: LiveData<String> = _text
 }

@@ -46,6 +46,7 @@ class HomeFragment : Fragment(), View.OnClickListener, OnSkinInformationClickLis
         val userPreferences = UserPreferences.getInstance(requireContext().dataStore)
         val homeViewModel = ViewModelProvider(this, UserModelFactory(userPreferences)).get(HomeViewModel::class.java)
 
+
         homeViewModel.userName.observe(viewLifecycleOwner, Observer { userName ->
             binding.textViewUser.text = "Hello $userName"
         })

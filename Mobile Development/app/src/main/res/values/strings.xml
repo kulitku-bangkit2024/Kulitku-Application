@@ -56,7 +56,11 @@
     <string name="btn_camera">Camera</string>
     <string name="btn_gallery">Gallery</string>
     <string name="btn_analyze">Analyze</string>
+    <string name="btn_save_profile">Save Profile</string>
+    <string name="btn_logout">Logout</string>
     <string name="result">Hasil Analisis</string>
+    <string name="email_validation">Alamat email anda tidak valid!</string>
+    <string name="password_length">Password tidak boleh kurang dari 8 karakter!</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
     <string name="no_text_recognized">No text recognized!</string>
     <string name="classfier_setup_error">"Image Classifier Initialization Error, check error log for details"</string>
@@ -73,4 +77,5 @@
     <string name="analyze_time">%s ms</string>
     <string name="no_history_found">History Kosong</string>
     <string name="hasil_analisis">Hasil analisis:</string>
+    <string name="txt_profile">Profile</string>
 </resources>

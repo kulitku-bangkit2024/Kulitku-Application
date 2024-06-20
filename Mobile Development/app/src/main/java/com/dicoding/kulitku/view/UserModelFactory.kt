@@ -12,6 +12,9 @@ class UserModelFactory(private val pref: UserPreferences) : ViewModelProvider.Ne
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
             return HomeViewModel(pref) as T
         }
+        if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
+            return ProfileViewModel(pref) as T
+        }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 }

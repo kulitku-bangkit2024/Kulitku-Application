@@ -22,13 +22,13 @@ class HistoryAdapter(private var historyList: ArrayList<Analyze>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HistoryAdapter.ViewHolder {
+    ): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_history, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: HistoryAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val analyzeHistory = historyList[position]
         holder.analyzeHistoryImg.setImageURI(Uri.parse(analyzeHistory.uri))
         holder.analyzeHistoryType.text = analyzeHistory.type

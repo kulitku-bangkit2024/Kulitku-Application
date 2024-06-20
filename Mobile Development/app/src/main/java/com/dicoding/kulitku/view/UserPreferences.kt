@@ -1,5 +1,6 @@
 package com.dicoding.kulitku.view
 
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -12,6 +13,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
 
     private val NAME_KEY = stringPreferencesKey("name")
     private val TOKEN_KEY = stringPreferencesKey("token")
+    private val EMAIL_KEY = stringPreferencesKey("email")
     private val LOGIN_KEY = booleanPreferencesKey("login_session")
 
     fun getLoginSession(): Flow<Boolean> {
@@ -50,11 +52,24 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
+    fun getEmail(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[EMAIL_KEY] ?: ""
+        }
+    }
+
+    suspend fun saveEmail(email: String) {
+        dataStore.edit { preferences ->
+            preferences[EMAIL_KEY] = email
+        }
+    }
+
     suspend fun logout() {
         dataStore.edit { preferences ->
             preferences.remove(LOGIN_KEY)
             preferences.remove(NAME_KEY)
             preferences.remove(TOKEN_KEY)
+            preferences.remove(EMAIL_KEY)
         }
     }
 

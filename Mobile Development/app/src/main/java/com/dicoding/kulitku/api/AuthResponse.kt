@@ -1,9 +1,10 @@
 package com.dicoding.kulitku.api
 
+import android.provider.ContactsContract.CommonDataKinds.Email
 import com.google.gson.annotations.SerializedName
 
 data class RegisterData(
-    var username: String,
+    var name: String,
     var email: String,
     var password: String
 )
@@ -16,7 +17,7 @@ data class LoginData(
 // USER
 data class UserData(
     @SerializedName("id_user") val idUser: String,
-    @SerializedName("username") val username: String,
+    @SerializedName("name") val name: String,
     @SerializedName("email") val email: String,
     @SerializedName("password") val password: String
 )
@@ -32,7 +33,8 @@ data class RegisterResponse(
 data class LoginResponse(
     @SerializedName("success") val success: Boolean,
     @SerializedName("userId") val userId: String,
-    @SerializedName("userName") val userName: String,
+    @SerializedName("name") val name: String,
+    @SerializedName("email") val email: String,
     @SerializedName("message") val message: String
 )
 
@@ -53,7 +55,7 @@ data class UpdateProfileResponse(
     @SerializedName("success") val success: Boolean,
     @SerializedName("message") val message: String,
     @SerializedName("id_user") val idUser: String,
-    @SerializedName("userName") val userName: String,
+    @SerializedName("name") val name: String,
     @SerializedName("email") val email: String,
     @SerializedName("password") val password: String
 )

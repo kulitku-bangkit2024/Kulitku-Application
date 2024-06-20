@@ -12,6 +12,7 @@
 
     <color name="gray1">#B7B7B7</color>
     <color name="gray2">#D9D9D9</color>
+    <color name="red">#D40000</color>
 
     <color name="rippleColor">#03FF72</color>
     <color name="indicatorColor">#03FF72</color>

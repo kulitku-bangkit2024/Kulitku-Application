@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.datastore.core.DataStore
@@ -147,7 +148,11 @@ class LoginActivity : AppCompatActivity() {
             val user = loginViewModel.userLogin.value
             userViewModel.saveLogin(true)
             user?.userId?.let { userViewModel.saveToken(it) }
-            user?.userName?.let { userViewModel.saveName(it) }
+            user?.name?.let { userViewModel.saveName(it) }
+            user?.email?.let {
+                userViewModel.saveEmail(it)
+                Log.d("LoginActivity", "Email saved: $it")
+            }
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

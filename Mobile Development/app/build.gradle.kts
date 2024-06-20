@@ -54,6 +54,7 @@ dependencies {
     implementation("androidx.camera:camera-mlkit-vision:1.4.0-beta01")
     implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
     implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
+    implementation("androidx.datastore:datastore-core-android:1.1.1")
     val cameraxVersion = "1.3.3"
 //  glide
     implementation("com.github.bumptech.glide:glide:4.16.0")

@@ -32,9 +32,20 @@ class UserViewModel(private val preference: UserPreferences) : ViewModel() {
         return preference.getName().asLiveData()
     }
 
+
     fun saveName(name: String) {
         viewModelScope.launch {
             preference.saveName(name)
+        }
+    }
+
+    fun getEmail():LiveData<String> {
+        return preference.getEmail().asLiveData()
+    }
+
+    fun saveEmail(email: String) {
+        viewModelScope.launch {
+            preference.saveEmail(email)
         }
     }
 
