@@ -5,11 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/txt_profile"
+        android:textColor="@color/terracotta"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/iv_profile"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="130dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/baseline_person_24"
@@ -21,29 +35,17 @@
         android:contentDescription="@string/title_profile" />
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:text="@string/txt_profile"
-        android:textColor="@color/terracotta"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/tv_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
+        android:paddingVertical="10dp"
         android:text="@string/default_username"
         android:textColor="@color/black"
         android:textSize="18sp"
+        android:background="@drawable/custom_form_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
@@ -53,11 +55,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
+        android:paddingVertical="10dp"
         android:text="@string/default_email"
         android:textColor="@color/black"
         android:textSize="18sp"
+        android:background="@drawable/custom_form_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_username" />
@@ -69,8 +73,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
+        android:layout_marginTop="20dp"
         android:text="@string/logout"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_email" />

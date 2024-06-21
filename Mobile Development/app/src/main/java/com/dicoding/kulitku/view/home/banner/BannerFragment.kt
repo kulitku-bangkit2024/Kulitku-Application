@@ -28,12 +28,12 @@ class BannerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        imageResId = arguments?.getInt(ARG_PARAM1) ?: R.drawable.img_placeholder
+        imageResId = arguments?.getInt(ARG_PARAM1) ?: R.drawable.ic_place_holder
         val view = inflater.inflate(R.layout.fragment_banner, container, false)
         val img: ImageView = view.findViewById(R.id.img)
         Glide.with(requireActivity())
             .load(imageResId)
-            .placeholder(R.drawable.img_placeholder)
+            .placeholder(R.drawable.ic_place_holder)
             .into(img)
         return view
     }

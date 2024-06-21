@@ -20,5 +20,4 @@
             android:scaleType="center" />
 
     </androidx.cardview.widget.CardView>
-
 </FrameLayout>

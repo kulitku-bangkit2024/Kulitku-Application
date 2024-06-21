@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="16dp"
-        android:text="History"
+        android:text="@string/history_title"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"

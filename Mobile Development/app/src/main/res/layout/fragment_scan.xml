@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="16dp"
-            android:text="Scan"
+            android:text="@string/scan"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -38,7 +38,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarTitle"
-            app:srcCompat="@drawable/ic_place_holder" />
+            app:srcCompat="@drawable/ic_place_holder"
+            android:contentDescription="@string/image_scan"/>
 
         <LinearLayout
             android:id="@+id/validationLayout"
@@ -57,7 +58,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="Scan your image"
+                android:text="@string/scan_your_image"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -126,7 +127,7 @@
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Lihat Hasil"
+            android:text="@string/lihat_hasil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_gallery" />

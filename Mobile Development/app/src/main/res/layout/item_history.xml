@@ -35,7 +35,7 @@
             android:maxLines="3"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="Penyakit kulit"
+            tools:text="@string/diagnosa_kulit_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/analyze_history_image"
             app:layout_constraintTop_toTopOf="parent" />

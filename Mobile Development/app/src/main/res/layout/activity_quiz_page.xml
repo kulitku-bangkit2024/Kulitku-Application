@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:maxLines="3"
-        android:text="1/10"
+        android:text="@string/total_mark_quiz"
         android:textAlignment="viewEnd"
         android:textColor="@color/terracotta"
         android:textSize="18sp"
@@ -45,7 +45,7 @@
             android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif"
             android:padding="8dp"
-            android:text="Questions"
+            android:text="@string/questions_quiz"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -74,7 +74,7 @@
             android:background="@drawable/custom_form_input"
             android:checked="false"
             android:padding="8dp"
-            android:text="Option A"
+            android:text="@string/quiz_option_a"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -87,7 +87,7 @@
             android:background="@drawable/custom_form_input"
             android:checked="false"
             android:padding="8dp"
-            android:text="Option B"
+            android:text="@string/quiz_option_b"
             android:textSize="16sp" />
 
         <RadioButton
@@ -98,7 +98,7 @@
             android:background="@drawable/custom_form_input"
             android:checked="false"
             android:padding="8dp"
-            android:text="Option C"
+            android:text="@string/quiz_option_c"
             android:textSize="16sp" />
 
         <RadioButton
@@ -109,7 +109,7 @@
             android:background="@drawable/custom_form_input"
             android:checked="false"
             android:padding="8dp"
-            android:text="Option D"
+            android:text="@string/quiz_option_d"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -125,7 +125,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_background"
         android:focusable="true"
-        android:text="Next Question"
+        android:text="@string/quiz_next_question"
         android:textColor="#ffffff"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/answers_group" />

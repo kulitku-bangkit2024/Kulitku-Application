@@ -10,7 +10,7 @@ class SliderPagerAdapter(fm: FragmentManager, private val mFrags: List<Fragment>
 
     override fun getItem(position: Int): Fragment {
         val index = position % mFrags.size
-        val imageResId = mFrags[index].arguments?.getInt("imgSlider") ?: R.drawable.img_placeholder
+        val imageResId = mFrags[index].arguments?.getInt("imgSlider") ?: R.drawable.ic_place_holder
         return BannerFragment.newInstance(imageResId)
     }
 

@@ -43,7 +43,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
                     android:layout_toEndOf="@id/profileCircleImageView"
-                    android:text="Hello Gilang!"
+                    android:text="@string/hello_username"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -135,7 +135,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="4dp"
-                            android:text="Tips"
+                            android:text="@string/tips_title"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -169,7 +169,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="4dp"
-                            android:text="Quiz"
+                            android:text="@string/quiz_title"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -202,7 +202,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="4dp"
-                            android:text="Konsultasi"
+                            android:text="@string/konsultasi_title"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -235,9 +235,11 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="4dp"
-                            android:text="Track Skin Healt"
+                            android:paddingBottom="10dp"
+                            android:text="@string/track_skin_health"
                             android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:maxLines="2"/>
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -272,7 +274,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/titleTextView"
                         android:layout_marginTop="16dp"
-                        android:text="Pelajari cara menjaga kesehatan kulit Anda dengan tips dan trik dari para ahli."
+                        android:text="@string/description_banner_tips"
                         android:textColor="#ffffff"
                         android:textSize="14sp" />
 
@@ -285,7 +287,7 @@
                         android:backgroundTint="#A0522D"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:text="Read More"
+                        android:text="@string/read_more_button"
                         android:textColor="#ffffff" />
 
                 </RelativeLayout>
@@ -315,7 +317,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="8dp"
-                    android:text="See All"
+                    android:text="@string/see_all"
                     android:textColor="@color/gold"
                     android:textSize="16sp"
                     android:textStyle="bold" />

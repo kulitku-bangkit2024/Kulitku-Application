@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="16dp"
-        android:text="Article"
+        android:text="@string/article"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"

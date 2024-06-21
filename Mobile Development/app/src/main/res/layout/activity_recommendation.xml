@@ -22,6 +22,7 @@
                 android:layout_height="300dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/round_back"
+                android:contentDescription="@string/image_product"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_place_holder"
                 app:layout_constraintBottom_toTopOf="@+id/label_product_name"
@@ -34,7 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Product Name:"
+                android:text="@string/product_name_label"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -47,7 +48,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Product Name"
+                android:text="@string/product_name"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +60,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Category:"
+                android:text="@string/category_label"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -72,44 +73,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Category"
+                android:text="@string/category"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/label_product_category" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/label_skin_type"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:text="Skin Type:"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="14sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/text_product_category" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/text_skin_type"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:text="Skin Type"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="14sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/label_skin_type" />-->
-
             <TextView
                 android:id="@+id/label_product_main_benefits"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Main Benefits:"
+                android:text="@string/main_benefits_label"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -122,7 +98,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Main Benefits"
+                android:text="@string/main_benefits"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +110,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Usage:"
+                android:text="@string/usage_label"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -147,7 +123,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Usage"
+                android:text="@string/usage"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
