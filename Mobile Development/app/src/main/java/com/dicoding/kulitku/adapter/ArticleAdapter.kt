@@ -1,17 +1,19 @@
 package com.dicoding.kulitku.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dicoding.kulitku.R
-import com.dicoding.kulitku.data.ArticleItem
+import com.dicoding.kulitku.api.ResponseArticleItem
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.dicoding.kulitku.databinding.ItemArticleBinding
 
-class ArticleAdapter(private val articleItems: List<ArticleItem>, private val listener: OnArticleClickListener) :
-    RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
+class ArticleAdapter(
+    private val listener: OnArticleClickListener
+) : ListAdapter<ResponseArticleItem, ArticleAdapter.ArticleViewHolder>(ArticleDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val binding = ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,36 +21,54 @@ class ArticleAdapter(private val articleItems: List<ArticleItem>, private val li
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        val articleItem = articleItems[position]
+        val articleItem = getItem(position)
         holder.bind(articleItem)
         holder.itemView.setOnClickListener {
-            listener.onArcticleClick(position)
+            listener.onArticleClick(position)
         }
-    }
-
-    override fun getItemCount(): Int {
-        return articleItems.size
     }
 
     inner class ArticleViewHolder(private val binding: ItemArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        fun bind(articleItem: ResponseArticleItem) {
+            Glide.with(itemView.context)
+                .load(articleItem.image_url)
+                .placeholder(R.drawable.ic_place_holder)
+                .into(binding.articleImage)
 
-        fun bind(articleItem: ArticleItem) {
-            binding.articleTitle.text = articleItem.title
-            binding.articleDescription.text = getShortenedDescription(articleItem.description)
+            Log.d("Article Adapter", articleItem.image_url)
+            binding.articleTitle.text = articleItem.title ?: ""
+            binding.articleDescription.text = getShortenedDescription(articleItem.content)
+        }
+    }
+
+    private fun getShortenedDescription(description: String): String {
+        val maxLength = 100
+        return if (description.length > maxLength) {
+            description.substring(0, maxLength) + "..."
+        } else {
+            description
+        }
+    }
+
+    class ArticleDiffCallback : DiffUtil.ItemCallback<ResponseArticleItem>() {
+        override fun areItemsTheSame(
+            oldItem: ResponseArticleItem,
+            newItem: ResponseArticleItem
+        ): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        private fun getShortenedDescription(description: String): String {
-            val maxLength = 100
-            return if (description.length > maxLength) {
-                description.substring(0, maxLength) + "..."
-            } else {
-                description
-            }
+        override fun areContentsTheSame(
+            oldItem: ResponseArticleItem,
+            newItem: ResponseArticleItem
+        ): Boolean {
+            return oldItem == newItem
         }
     }
 }
 
 interface OnArticleClickListener {
-    fun onArcticleClick(position: Int)
+    fun onArticleClick(position: Int)
 }
+

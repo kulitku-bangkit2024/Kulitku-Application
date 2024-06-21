@@ -6,6 +6,9 @@
         <item name="colorOnPrimary">@color/white</item>
 
         <item name="android:statusBarColor">@color/terracotta</item>
+
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="Theme.Kulitku" parent="Base.Theme.Kulitku" />

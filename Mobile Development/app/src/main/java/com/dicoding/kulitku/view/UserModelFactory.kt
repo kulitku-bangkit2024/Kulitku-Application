@@ -2,6 +2,7 @@ package com.dicoding.kulitku.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.dicoding.kulitku.view.home.HomeViewModel
 
 class UserModelFactory(private val pref: UserPreferences) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")

@@ -36,8 +36,17 @@ interface ApiServiceAuth {
         @Query("id_user") id: String
     ): Call<DeleteProfileResponse>
 
-//    @GET("auth/google/callback")
-//    fun loginWithGoogle(
-//        @Query("code") code: String
-//    ): Call<GoogleAuthResponse>
+    @GET("auth/google/")
+    fun loginWithGoogle(
+        @Query("code") code: String
+    ): Call<AuthResponse>
+
+    @GET("article")
+    fun getArticles(): Call<List<ResponseArticleItem>>
+
+    @GET("quiz")
+    fun getQuizs(): Call<List<ResponseQuizItem>>
+
+    @GET("tips")
+    fun getTips(): Call<List<ResponseTipsItem>>
 }

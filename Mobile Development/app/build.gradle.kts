@@ -18,8 +18,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "NEWS_API_KEY", "\"8461b20805e6427c9097f7accdc8390b\"")
-        buildConfigField("String", "NEWS_API_URL", "\"https://newsapi.org/v2/\"")
 
         buildConfigField("String", "AUTH_API_URL", "\"https://kulitku-bangkit2024.et.r.appspot.com/\"")
     }
@@ -77,6 +75,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")

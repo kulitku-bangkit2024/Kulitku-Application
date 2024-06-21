@@ -37,6 +37,16 @@ class UserViewModel(private val preference: UserPreferences) : ViewModel() {
         }
     }
 
+    fun saveEmail(email: String) {
+        viewModelScope.launch {
+            preference.saveEmail(email)
+        }
+    }
+
+    fun getEmail():LiveData<String> {
+        return preference.getEmail().asLiveData()
+    }
+
     fun logout() {
         viewModelScope.launch {
             preference.logout()

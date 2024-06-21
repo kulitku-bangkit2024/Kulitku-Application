@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="38dp"
     android:paddingHorizontal="12dp"
-    tools:context=".fragment.HomeFragment">
+    tools:context=".view.home.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/menu_tips"
+                        android:id="@+id/menu_article"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -101,13 +101,13 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="4dp"
-                            android:text="@string/tips_trik"
+                            android:text="@string/title_article"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/menu_informasi"
+                        android:id="@+id/menu_tips"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -135,7 +135,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="4dp"
-                            android:text="Informasi kulit"
+                            android:text="Tips"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -239,43 +239,9 @@
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:orientation="vertical">
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginEnd="2dp"
-                            android:layout_marginBottom="5dp"
-                            android:elevation="3dp"
-                            card_view:cardBackgroundColor="@color/terracotta"
-                            card_view:cardCornerRadius="20dp">
-
-                            <ImageView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_buku" />
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="4dp"
-                            android:text="Menu 6"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
             <!-- END MENU-->
-
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -295,7 +261,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Tips and Trick Kesehatan Kulit"
+                        android:text="@string/tips_trik"
                         android:textColor="#ffffff"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -325,7 +291,7 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-            <!--Informasi Kulit-->
+            <!--Tips-->
             <RelativeLayout
                 android:id="@+id/titleSection3"
                 android:layout_width="match_parent"
@@ -338,11 +304,12 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="8dp"
-                    android:text="Informasi Masalah Kulit"
+                    android:text="@string/title_article"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/seeAllButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -354,14 +321,13 @@
                     android:textStyle="bold" />
             </RelativeLayout>
 
-            <!-- Informasi Kulit Card -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewArticles2"
+                android:id="@+id/rv_article"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:scrollbars="none"
-                tools:listitem="@layout/item_skin_information" />
+                tools:listitem="@layout/item_article" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

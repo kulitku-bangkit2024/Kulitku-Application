@@ -6,52 +6,49 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.dicoding.kulitku.fragment.HomeFragment"
+        android:name="com.dicoding.kulitku.view.home.HomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
-
-    <!--    sementara pake news-->
     <fragment
-        android:id="@+id/navigation_news"
-        android:name="com.dicoding.kulitku.fragment.NewsFragment"
-        android:label="@string/title_news"
-        tools:layout="@layout/fragment_news">
-        <!--        <action-->
-        <!--            android:id="@id/navigation_detail_article"-->
-        <!--            app:destination="@id/navigation_detail_article"/>-->
+        android:id="@+id/navigation_article"
+        android:name="com.dicoding.kulitku.view.article.ArticleFragment"
+        android:label="@string/title_article"
+        tools:layout="@layout/fragment_article">
+                <action
+                    android:id="@id/navigation_detail_article"
+                    app:destination="@id/navigation_detail_article"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_scan"
-        android:name="com.dicoding.kulitku.fragment.ScanFragment"
+        android:name="com.dicoding.kulitku.view.scan.ScanFragment"
         android:label="@string/title_scan"
         tools:layout="@layout/fragment_scan" />
     <fragment
         android:id="@+id/navigation_history"
-        android:name="com.dicoding.kulitku.fragment.HistoryFragment"
+        android:name="com.dicoding.kulitku.view.history.HistoryFragment"
         android:label="@string/title_history"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.dicoding.kulitku.fragment.ProfileFragment"
+        android:name="com.dicoding.kulitku.view.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/navigation_skin_information"
-        android:name="com.dicoding.kulitku.fragment.SkinInformationFragment"
-        tools:layout="@layout/fragment_skin_information">
+        android:id="@+id/navigation_tips"
+        android:name="com.dicoding.kulitku.view.tips.TipsFragment"
+        tools:layout="@layout/fragment_tips">
         <action
-            android:id="@id/navigation_detail_skin_information"
-            app:destination="@id/navigation_detail_skin_information" />
+            android:id="@id/navigation_detail_tips"
+            app:destination="@id/navigation_detail_tips" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_detail_article"
-        android:name="com.dicoding.kulitku.fragment.DetailArticleFragment"
+        android:name="com.dicoding.kulitku.view.article.DetailArticleFragment"
         tools:layout="@layout/fragment_detail_article" />
-
     <fragment
-        android:id="@+id/navigation_detail_skin_information"
-        android:name="com.dicoding.kulitku.fragment.DetailSkinInformationFragment"
-        tools:layout="@layout/fragment_detail_information" />
+        android:id="@+id/navigation_detail_tips"
+        android:name="com.dicoding.kulitku.view.tips.DetailTipsFragment"
+        tools:layout="@layout/fragment_detail_tips" />
 </navigation>

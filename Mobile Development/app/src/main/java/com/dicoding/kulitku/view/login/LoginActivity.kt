@@ -2,9 +2,11 @@ package com.dicoding.kulitku.view.login
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.datastore.core.DataStore
@@ -33,27 +35,12 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
     private var passwordShowing = false
 
-//    private lateinit var googleSignInClient: GoogleSignInClient
-//    private val googleSignInLauncher = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) { result ->
-//        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-//        handleSignInResult(task)
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()
-
-//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//            .requestIdToken(getString(R.string.your_web_client_id))
-//            .requestEmail()
-//            .build()
-
-//        googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         val pref = UserPreferences.getInstance(dataStore)
         userViewModel = ViewModelProvider(this, UserModelFactory(pref))[UserViewModel::class.java]
@@ -91,6 +78,45 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+
+        loginViewModel.userLoginGoogle.observe(this) { googleLoginResult ->
+            googleLoginResult?.let {
+                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                if (it.message.contains("Pengguna berhasil dibuat")) {
+                    userViewModel.saveLogin(true)
+                    userViewModel.saveToken(it.id_user)
+                    userViewModel.saveName(it.name)
+                    userViewModel.saveEmail(it.email)
+
+                    val intent = Intent(this, MainActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        }
+
+        binding.signInWithGoogle.setOnClickListener {
+            launchGoogleSignInFlow()
+        }
+    }
+
+    private fun launchGoogleSignInFlow() {
+        val authorizationUrl = Uri.parse("https://accounts.google.com/o/oauth2/v2/auth")
+            .buildUpon()
+            .appendQueryParameter("client_id", "716663510651-n6la85ffcicf2oon3ec0fuckf0lm3eu2")
+            .appendQueryParameter("response_type", "code")
+            .appendQueryParameter("scope", "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile")
+            .appendQueryParameter("redirect_uri", "https://kulitku-bangkit2024.et.r.appspot.com/auth/google/callback")
+            .appendQueryParameter("state", "state_parameter_passthrough_value")
+            .appendQueryParameter("nonce", "nonce_value")
+            .build()
+
+        Log.d("GoogleAuth", "Authorization URL: $authorizationUrl")
+
+        val intent = Intent(Intent.ACTION_VIEW, authorizationUrl)
+        startActivity(intent)
     }
 
     private fun togglePasswordVisibility() {
@@ -148,6 +174,9 @@ class LoginActivity : AppCompatActivity() {
             userViewModel.saveLogin(true)
             user?.userId?.let { userViewModel.saveToken(it) }
             user?.name?.let { userViewModel.saveName(it) }
+            user?.email?.let { userViewModel.saveEmail(it) }
+
+            Log.d("LOGIN USER", user.toString())
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -155,10 +184,6 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
     }
-
-//    private fun loginGoogle(idToken: String) {
-//        loginViewModel.loginWithGoogle(idToken)
-//    }
 
     companion object {
         private const val TAG = "LoginActivity"

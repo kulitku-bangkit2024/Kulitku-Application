@@ -1,5 +1,6 @@
 package com.dicoding.kulitku.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dicoding.kulitku.api.*
@@ -11,7 +12,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Repository(private val apiServiceAuth: ApiServiceAuth, private val analyzeRoomDatabase: AnalyzeRoomDatabase) {
+import com.dicoding.kulitku.api.ApiConfigAuth
+import com.dicoding.kulitku.api.AuthResponse
+
+
+class Repository(
+    private val apiServiceAuth: ApiServiceAuth,
+    private val analyzeRoomDatabase: AnalyzeRoomDatabase
+) {
 
     private val analyzeDao = analyzeRoomDatabase.analyzeDao()
 
@@ -27,6 +35,9 @@ class Repository(private val apiServiceAuth: ApiServiceAuth, private val analyze
     private val _userLogin = MutableLiveData<LoginResponse>()
     val userLogin: LiveData<LoginResponse> = _userLogin
 
+    private val _userLoginGoogle = MutableLiveData<AuthResponse>()
+    val userLoginGoogle: LiveData<AuthResponse> get() = _userLoginGoogle
+
     private val _userProfile = MutableLiveData<GetProfileResponse>()
     val userProfile: LiveData<GetProfileResponse> = _userProfile
 
@@ -35,6 +46,15 @@ class Repository(private val apiServiceAuth: ApiServiceAuth, private val analyze
 
     private val _deleteProfileResponse = MutableLiveData<DeleteProfileResponse>()
     val deleteProfileResponse: LiveData<DeleteProfileResponse> = _deleteProfileResponse
+
+    private val _articles = MutableLiveData<List<ResponseArticleItem>>()
+    val articles: LiveData<List<ResponseArticleItem>> = _articles
+
+    private val _quizzes = MutableLiveData<List<ResponseQuizItem>>()
+    val quizzes: LiveData<List<ResponseQuizItem>> = _quizzes
+
+    private val _tips = MutableLiveData<List<ResponseTipsItem>>()
+    val tips: LiveData<List<ResponseTipsItem>> = _tips
 
     fun registerUser(registerData: RegisterData) {
         _isLoading.value = true
@@ -157,34 +177,39 @@ class Repository(private val apiServiceAuth: ApiServiceAuth, private val analyze
         })
     }
 
-//    fun loginWithGoogle(code: String) {
-//        _isLoading.value = true
-//        val api = ApiConfigAuth.getApiService().loginWithGoogle(code)
-//        api.enqueue(object : Callback<GoogleAuthResponse> {
-//            override fun onResponse(
-//                call: Call<GoogleAuthResponse>,
-//                response: Response<GoogleAuthResponse>
-//            ) {
-//                _isLoading.value = false
-//                if (response.isSuccessful) {
-//                    val googleAuthResponse = response.body()
-//                    if (googleAuthResponse != null) {
-//                        // Tambahkan kode untuk menyimpan data user dan token jika diperlukan
-//                        _message.value = "Login with Google successful"
-//                    } else {
-//                        _message.value = "Failed to get Google login response"
-//                    }
-//                } else {
-//                    _message.value = "Error: " + response.message()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<GoogleAuthResponse>, t: Throwable) {
-//                _isLoading.value = false
-//                _message.value = "Error: " + t.message.toString()
-//            }
-//        })
-//    }
+    fun loginWithGoogle(code: String) {
+        _isLoading.value = true
+        val api = ApiConfigAuth.getApiService().loginWithGoogle(code)
+        api.enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(
+                call: Call<AuthResponse>,
+                response: Response<AuthResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Repository", "Response: $responseBody")
+                    responseBody?.let {
+                        _userLoginGoogle.value = it
+                        _message.value = "Login with Google successful"
+                    } ?: run {
+                        _message.value = "Empty response body"
+                        Log.e("Repository", "Empty response body")
+                    }
+                } else {
+                    Log.e("Repository", "Response error: ${response.errorBody()?.string()}")
+                    _message.value = "Error: " + response.message()
+                }
+            }
+
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                _isLoading.value = false
+                _message.value = "Login with Google failed: ${t.message}"
+                Log.d("Repository", "Error: ${t.message}")
+            }
+        })
+    }
+
 
     fun getAllAnalyze(): LiveData<List<Analyze>> {
         return analyzeDao.getAll()
@@ -194,6 +219,75 @@ class Repository(private val apiServiceAuth: ApiServiceAuth, private val analyze
         withContext(Dispatchers.IO) {
             analyzeDao.insert(analyze)
         }
+    }
+
+    fun getArticles() {
+        _isLoading.value = true
+        val api = apiServiceAuth.getArticles()
+        api.enqueue(object : Callback<List<ResponseArticleItem>> {
+            override fun onResponse(
+                call: Call<List<ResponseArticleItem>>,
+                response: Response<List<ResponseArticleItem>>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _articles.value = response.body()
+                } else {
+                    _message.value = "Error: " + response.message()
+                }
+            }
+
+            override fun onFailure(call: Call<List<ResponseArticleItem>>, t: Throwable) {
+                _isLoading.value = false
+                _message.value = "Error: " + t.message.toString()
+            }
+        })
+    }
+
+    fun getTips() {
+        _isLoading.value = true
+        val api = apiServiceAuth.getTips()
+        api.enqueue(object : Callback<List<ResponseTipsItem>> {
+            override fun onResponse(
+                call: Call<List<ResponseTipsItem>>,
+                response: Response<List<ResponseTipsItem>>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _tips.value = response.body()
+                } else {
+                    _message.value = "Error: " + response.message()
+                }
+            }
+
+            override fun onFailure(call: Call<List<ResponseTipsItem>>, t: Throwable) {
+                _isLoading.value = false
+                _message.value = "Error: " + t.message.toString()
+            }
+        })
+    }
+
+    fun getQuizzes() {
+        _isLoading.value = true
+        val api = apiServiceAuth.getQuizs()
+        api.enqueue(object : Callback<List<ResponseQuizItem>> {
+            override fun onResponse(
+                call: Call<List<ResponseQuizItem>>,
+                response: Response<List<ResponseQuizItem>>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _quizzes.value = response.body()
+                } else {
+                    _message.value = "Error: " + response.message()
+                }
+            }
+
+            override fun onFailure(call: Call<List<ResponseQuizItem>>, t: Throwable) {
+                _isLoading.value = false
+                _message.value = "Error: " + t.message.toString()
+            }
+        })
     }
 }
 

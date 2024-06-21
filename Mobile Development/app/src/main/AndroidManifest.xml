@@ -25,18 +25,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kulitku"
         tools:targetApi="31">
-        <activity
-            android:name=".view.RecommendationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.DetailHistoryActivity"
-            android:exported="false" />
+
+        <activity android:name=".view.RedirectUriActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="kulitku-bangkit2024.et.r.appspot.com" android:pathPrefix="/auth/google/callback"/>
+            </intent-filter>
+        </activity>
 
         <activity
-            android:name=".view.CameraActivity"
+            android:name=".view.scan.RecommendationActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ResultScanActivity"
+            android:name=".view.history.DetailHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.scan.ResultScanActivity"
             android:exported="false" />
         <activity
             android:name=".view.quiz.QuizScoreActivity"

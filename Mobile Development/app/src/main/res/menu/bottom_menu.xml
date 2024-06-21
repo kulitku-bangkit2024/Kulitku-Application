@@ -6,15 +6,9 @@
         android:title="Home"
         android:icon="@drawable/ic_home24" />
 
-<!--    <item-->
-<!--        android:id="@+id/navigation_article"-->
-<!--        android:title="Article"-->
-<!--        android:icon="@drawable/ic_article24" />-->
-
-<!--    sementara pake news-->
     <item
-        android:id="@+id/navigation_news"
-        android:title="News"
+        android:id="@+id/navigation_article"
+        android:title="Article"
         android:icon="@drawable/ic_article24" />
 
     <item

@@ -4,9 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dicoding.kulitku.MainActivity
-import com.dicoding.kulitku.R
 import com.dicoding.kulitku.databinding.ActivityQuizMainBinding
-import com.dicoding.kulitku.databinding.FragmentHomeBinding
 
 class QuizMainActivity : AppCompatActivity() {
 
